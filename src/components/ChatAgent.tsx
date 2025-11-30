@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { MessageCircle, Send, X, User, Bot } from "lucide-react";
+import { MessageCircle, Send, X, User, Bot, Settings, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
@@ -10,93 +10,44 @@ interface Message {
   timestamp: Date;
 }
 
-// Knowledge base about Abhyuday
-const knowledgeBase = {
-  name: "Abhyuday Bhadauriya",
-  role: "Integration Lead",
-  company: "Observe.AI",
-  location: "Bengaluru, India",
-  experience: "10+ years",
-  email: "abhyudaysb@outlook.com",
-  phone: "+91 9770324776",
-  skills: {
-    technical: ["Python", "JavaScript", "React", "APIs", "AWS", "GCP", "Azure", "Docker", "Kubernetes", "SQL/NoSQL", "Snowflake"],
-    ai: ["Agentic Workflows", "Multi-Agent Systems", "RAG", "Prompt Engineering", "n8n", "Zapier"],
-    design: ["Solution Architecture", "Enterprise Integrations", "System Design", "ETL/ELT"],
-  },
-  companies: ["Observe.AI", "Unbxd Inc", "Bloomreach", "LTI"],
-  education: "B.E. from MEDICAPS Institute (2014)",
-  summary: "Creative problem-solver specializing in AI-driven and agentic solutions with extensive SaaS and enterprise integration experience.",
-};
+// Knowledge base about Abhyuday for context
+const systemPrompt = `You are an AI assistant on Abhyuday Bhadauriya's portfolio website. Answer questions about him based on this information:
 
-const getResponse = (query: string): string => {
-  const q = query.toLowerCase();
-  
-  // Greetings
-  if (q.includes("hello") || q.includes("hi") || q.includes("hey")) {
-    return `Hello! I'm Abhyuday's AI assistant. I can tell you about his experience, skills, projects, or how to contact him. What would you like to know?`;
-  }
-  
-  // Name
-  if (q.includes("name") || q.includes("who are you") || q.includes("who is")) {
-    return `This portfolio belongs to ${knowledgeBase.name}, an ${knowledgeBase.role} at ${knowledgeBase.company} based in ${knowledgeBase.location}.`;
-  }
-  
-  // Experience
-  if (q.includes("experience") || q.includes("work") || q.includes("career") || q.includes("job")) {
-    return `Abhyuday has ${knowledgeBase.experience} of experience. He's currently at ${knowledgeBase.company} as ${knowledgeBase.role}. Previously he worked at ${knowledgeBase.companies.slice(1).join(", ")}. He specializes in enterprise integrations and AI-driven solutions.`;
-  }
-  
-  // Skills
-  if (q.includes("skill") || q.includes("know") || q.includes("tech") || q.includes("stack")) {
-    return `Abhyuday's technical skills include: ${knowledgeBase.skills.technical.slice(0, 6).join(", ")}. For AI/Automation: ${knowledgeBase.skills.ai.slice(0, 4).join(", ")}. He's also experienced in ${knowledgeBase.skills.design.join(", ")}.`;
-  }
-  
-  // AI specific
-  if (q.includes("ai") || q.includes("machine learning") || q.includes("ml") || q.includes("agent")) {
-    return `Abhyuday works extensively with AI technologies including: ${knowledgeBase.skills.ai.join(", ")}. He's built internal agentic tools using MCP framework and RAG workflows at Observe.AI.`;
-  }
-  
-  // Contact
-  if (q.includes("contact") || q.includes("email") || q.includes("reach") || q.includes("phone") || q.includes("hire")) {
-    return `You can reach Abhyuday at:\n📧 ${knowledgeBase.email}\n📱 ${knowledgeBase.phone}\nHe's based in ${knowledgeBase.location}. Feel free to discuss your project ideas!`;
-  }
-  
-  // Location
-  if (q.includes("location") || q.includes("where") || q.includes("based") || q.includes("live")) {
-    return `Abhyuday is based in ${knowledgeBase.location}, India. He works with clients and teams globally.`;
-  }
-  
-  // Education
-  if (q.includes("education") || q.includes("study") || q.includes("degree") || q.includes("university")) {
-    return `Abhyuday holds a ${knowledgeBase.education}. Since then, he's gained ${knowledgeBase.experience} of professional experience in software and integration engineering.`;
-  }
-  
-  // Projects
-  if (q.includes("project") || q.includes("built") || q.includes("portfolio") || q.includes("work on")) {
-    return `Key projects include:\n• Enterprise Integration Platform (AWS, GCP, Azure)\n• Agentic AI Workflows with MCP & RAG\n• Data Pipeline Automation with n8n\n• Customer Success Platform for enterprise clients\n\nCheck the Projects section above for details!`;
-  }
-  
-  // Current role
-  if (q.includes("current") || q.includes("observe") || q.includes("now") || q.includes("doing")) {
-    return `Currently, Abhyuday is the ${knowledgeBase.role} at ${knowledgeBase.company}, where he architects enterprise-grade integrations and builds AI-driven tools. He works with customers having ARR from $100K to $5M.`;
-  }
-  
-  // Thanks
-  if (q.includes("thank") || q.includes("thanks")) {
-    return `You're welcome! Feel free to ask anything else about Abhyuday's experience or reach out directly at ${knowledgeBase.email}. Have a great day!`;
-  }
-  
-  // Default
-  return `I can help you learn about Abhyuday's experience, skills, projects, or contact info. Try asking:\n• "What's his experience?"\n• "What skills does he have?"\n• "Tell me about his AI work"\n• "How can I contact him?"`;
-};
+Name: Abhyuday Bhadauriya
+Role: Integration Lead at Observe.AI
+Location: Bengaluru, India
+Experience: 10+ years in software engineering
+
+Work Experience:
+- Observe.AI (Current) - Integration Lead: Architects enterprise integrations, builds AI-driven tools, works with $100K-$5M ARR customers
+- Unbxd Inc / Bloomreach - Senior Engineer: Product search, e-commerce solutions
+- LTI - Software Engineer: Enterprise solutions
+
+Technical Skills: Python, JavaScript, React, APIs, AWS, GCP, Azure, Docker, Kubernetes, SQL/NoSQL, Snowflake
+AI/Automation: Agentic Workflows, Multi-Agent Systems, RAG, Prompt Engineering, n8n, Zapier
+Solution Design: Enterprise Integrations, System Design, ETL/ELT
+
+Key Projects:
+- Enterprise Integration Platform (AWS, GCP, Azure)
+- Agentic AI Workflows with MCP & RAG
+- Data Pipeline Automation with n8n
+- Customer Success Platform
+
+Education: B.E. from MEDICAPS Institute (2014)
+Contact: abhyudaysb@outlook.com, +91 9770324776
+
+Be helpful, concise, and friendly. If asked about something not related to Abhyuday, politely redirect to portfolio topics.`;
 
 const ChatAgent = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [showSettings, setShowSettings] = useState(false);
+  const [apiKey, setApiKey] = useState(() => localStorage.getItem("gemini_api_key") || "");
+  const [tempApiKey, setTempApiKey] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     {
       id: "1",
-      text: "Hi! I'm here to answer questions about Abhyuday. What would you like to know?",
+      text: "Hi! I'm Abhyuday's AI assistant powered by Gemini. Ask me anything about his experience, skills, or projects!",
       sender: "bot",
       timestamp: new Date(),
     },
@@ -112,8 +63,65 @@ const ChatAgent = () => {
     scrollToBottom();
   }, [messages]);
 
-  const handleSend = () => {
+  useEffect(() => {
+    if (!apiKey && isOpen) {
+      setShowSettings(true);
+    }
+  }, [isOpen, apiKey]);
+
+  const saveApiKey = () => {
+    if (tempApiKey.trim()) {
+      localStorage.setItem("gemini_api_key", tempApiKey.trim());
+      setApiKey(tempApiKey.trim());
+      setShowSettings(false);
+      setTempApiKey("");
+    }
+  };
+
+  const callGemini = async (userMessage: string): Promise<string> => {
+    const conversationHistory = messages.map(m => ({
+      role: m.sender === "user" ? "user" : "model",
+      parts: [{ text: m.text }]
+    }));
+
+    const response = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          contents: [
+            { role: "user", parts: [{ text: systemPrompt }] },
+            { role: "model", parts: [{ text: "I understand. I'm ready to help visitors learn about Abhyuday Bhadauriya." }] },
+            ...conversationHistory,
+            { role: "user", parts: [{ text: userMessage }] }
+          ],
+          generationConfig: {
+            temperature: 0.7,
+            topK: 40,
+            topP: 0.95,
+            maxOutputTokens: 1024,
+          }
+        }),
+      }
+    );
+
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.error?.message || "Failed to get response");
+    }
+
+    const data = await response.json();
+    return data.candidates?.[0]?.content?.parts?.[0]?.text || "Sorry, I couldn't generate a response.";
+  };
+
+  const handleSend = async () => {
     if (!input.trim()) return;
+
+    if (!apiKey) {
+      setShowSettings(true);
+      return;
+    }
 
     const userMessage: Message = {
       id: Date.now().toString(),
@@ -124,21 +132,32 @@ const ChatAgent = () => {
 
     setMessages((prev) => [...prev, userMessage]);
     setInput("");
+    setIsLoading(true);
 
-    // Simulate typing delay
-    setTimeout(() => {
+    try {
+      const response = await callGemini(input);
       const botResponse: Message = {
         id: (Date.now() + 1).toString(),
-        text: getResponse(input),
+        text: response,
         sender: "bot",
         timestamp: new Date(),
       };
       setMessages((prev) => [...prev, botResponse]);
-    }, 500);
+    } catch (error) {
+      const errorMessage: Message = {
+        id: (Date.now() + 1).toString(),
+        text: `Error: ${error instanceof Error ? error.message : "Something went wrong"}. Please check your API key.`,
+        sender: "bot",
+        timestamp: new Date(),
+      };
+      setMessages((prev) => [...prev, errorMessage]);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === "Enter") {
+    if (e.key === "Enter" && !isLoading) {
       handleSend();
     }
   };
@@ -162,11 +181,49 @@ const ChatAgent = () => {
             <div className="w-10 h-10 rounded-full bg-primary-foreground/20 flex items-center justify-center">
               <Bot className="w-5 h-5" />
             </div>
-            <div>
+            <div className="flex-1">
               <h3 className="font-display font-bold">Chat with me</h3>
-              <p className="text-xs opacity-80 font-mono">Ask about Abhyuday</p>
+              <p className="text-xs opacity-80 font-mono">Powered by Gemini AI</p>
             </div>
+            <button
+              onClick={() => setShowSettings(!showSettings)}
+              className="p-2 hover:bg-primary-foreground/20 rounded-full transition-colors"
+              aria-label="Settings"
+            >
+              <Settings className="w-4 h-4" />
+            </button>
           </div>
+
+          {/* Settings Panel */}
+          {showSettings && (
+            <div className="p-4 bg-muted border-b border-border">
+              <p className="text-xs font-mono mb-2 text-muted-foreground">Enter your Gemini API key:</p>
+              <div className="flex gap-2">
+                <Input
+                  type="password"
+                  value={tempApiKey}
+                  onChange={(e) => setTempApiKey(e.target.value)}
+                  placeholder="AIza..."
+                  className="flex-1 font-mono text-xs"
+                />
+                <Button onClick={saveApiKey} size="sm">Save</Button>
+              </div>
+              <p className="text-xs text-muted-foreground mt-2">
+                Get your key from{" "}
+                <a
+                  href="https://aistudio.google.com/apikey"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary underline"
+                >
+                  Google AI Studio
+                </a>
+              </p>
+              {apiKey && (
+                <p className="text-xs text-green-600 mt-1 font-mono">✓ API key configured</p>
+              )}
+            </div>
+          )}
 
           {/* Messages */}
           <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-background">
@@ -199,6 +256,16 @@ const ChatAgent = () => {
                 </div>
               </div>
             ))}
+            {isLoading && (
+              <div className="flex gap-2">
+                <div className="w-8 h-8 rounded-full flex items-center justify-center shrink-0 bg-primary/20 text-primary">
+                  <Bot className="w-4 h-4" />
+                </div>
+                <div className="bg-muted rounded-r-lg rounded-tl-lg p-3">
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                </div>
+              </div>
+            )}
             <div ref={messagesEndRef} />
           </div>
 
@@ -209,11 +276,12 @@ const ChatAgent = () => {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyPress={handleKeyPress}
-                placeholder="Ask me anything..."
+                placeholder={apiKey ? "Ask me anything..." : "Set API key first..."}
                 className="flex-1 font-mono text-sm"
+                disabled={isLoading || !apiKey}
               />
-              <Button onClick={handleSend} size="icon" className="shrink-0">
-                <Send className="w-4 h-4" />
+              <Button onClick={handleSend} size="icon" className="shrink-0" disabled={isLoading || !apiKey}>
+                {isLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
               </Button>
             </div>
           </div>
