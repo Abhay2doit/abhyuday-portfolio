@@ -1,3 +1,5 @@
+import { Download } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import RetroStripes from "./RetroStripes";
 
 const HeroSection = () => {
@@ -33,10 +35,20 @@ const HeroSection = () => {
               <p className="text-muted-foreground leading-relaxed">
                 Hello. I'm an Integration Lead with 10+ years of experience architecting 
                 AI-driven solutions and enterprise integrations. Let's build something amazing together.
-                <a href="#contact" className="text-primary hover:underline ml-1 font-semibold">
-                  Let's get started →
-                </a>
               </p>
+              <div className="flex flex-wrap gap-4 mt-6">
+                <a href="#contact">
+                  <Button size="lg" className="font-display uppercase tracking-wide">
+                    Let's get started →
+                  </Button>
+                </a>
+                <a href="/Abhyuday_Bhadauriya_Resume.pdf" download>
+                  <Button variant="outline" size="lg" className="font-display uppercase tracking-wide">
+                    <Download className="w-4 h-4 mr-2" />
+                    Download Resume
+                  </Button>
+                </a>
+              </div>
             </div>
             
             {/* Mobile stripes */}
