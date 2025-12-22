@@ -1,4 +1,5 @@
 import { Code, Cpu, Layers, Users } from "lucide-react";
+import SkillIconMarquee from "./SkillIconMarquee";
 
 const skillCategories = [
   {
@@ -53,12 +54,15 @@ const SkillsSection = () => {
       <div className="absolute inset-0 paper-texture pointer-events-none" />
       
       <div className="container mx-auto px-4 md:px-8">
-        <div className="flex items-center gap-4 mb-12">
+        <div className="flex items-center gap-4 mb-8">
           <Code className="w-8 h-8 text-primary" />
           <h2 className="text-4xl md:text-6xl font-display font-bold uppercase">
             Skills.
           </h2>
         </div>
+        
+        {/* Skill Icons Marquee */}
+        <SkillIconMarquee />
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
           {skillCategories.map((category, index) => (
