@@ -1,36 +1,59 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const navLinks = [
-  { href: "/#experience", label: "Experience" },
-  { href: "/#skills", label: "Skills" },
-  { href: "/#projects", label: "Projects" },
-  { href: "/ai-corner", label: "AI Corner" },
-  { href: "/#contact", label: "Contact" },
+  { href: "#experience", label: "Experience", isHash: true },
+  { href: "#skills", label: "Skills", isHash: true },
+  { href: "#projects", label: "Projects", isHash: true },
+  { href: "/ai-corner", label: "AI Corner", isHash: false },
+  { href: "#contact", label: "Contact", isHash: true },
 ];
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleNavClick = (link: { href: string; isHash: boolean }) => {
+    setIsOpen(false);
+
+    if (link.isHash) {
+      if (location.pathname !== "/") {
+        navigate("/");
+        // Wait for navigation then scroll
+        setTimeout(() => {
+          const element = document.querySelector(link.href);
+          element?.scrollIntoView({ behavior: "smooth" });
+        }, 100);
+      } else {
+        const element = document.querySelector(link.href);
+        element?.scrollIntoView({ behavior: "smooth" });
+      }
+    } else {
+      navigate(link.href);
+    }
+  };
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-40 bg-background/95 backdrop-blur-sm border-b border-border">
       <div className="container mx-auto px-4 md:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <a href="#" className="font-display text-xl font-bold text-primary">
+          <button onClick={() => navigate("/")} className="font-display text-xl font-bold text-primary">
             AB<span className="text-secondary">.</span>
-          </a>
+          </button>
 
           {/* Desktop nav */}
           <div className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
+              <button
+                key={link.label}
+                onClick={() => handleNavClick(link)}
                 className="font-mono text-sm text-muted-foreground hover:text-primary transition-colors uppercase tracking-wider"
               >
                 {link.label}
-              </a>
+              </button>
             ))}
           </div>
 
@@ -49,14 +72,13 @@ const Navigation = () => {
           <div className="md:hidden py-4 border-t border-border">
             <div className="flex flex-col gap-4">
               {navLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setIsOpen(false)}
-                  className="font-mono text-sm text-muted-foreground hover:text-primary transition-colors uppercase tracking-wider py-2"
+                <button
+                  key={link.label}
+                  onClick={() => handleNavClick(link)}
+                  className="text-left font-mono text-sm text-muted-foreground hover:text-primary transition-colors uppercase tracking-wider py-2"
                 >
                   {link.label}
-                </a>
+                </button>
               ))}
             </div>
           </div>
@@ -65,5 +87,6 @@ const Navigation = () => {
     </nav>
   );
 };
+
 
 export default Navigation;

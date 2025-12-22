@@ -14,7 +14,7 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter>
+      <BrowserRouter basename="/abhyuday-portfolio">
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/ai-corner" element={<AICorner />} />
