@@ -9,7 +9,7 @@ const experiences = [
       "Architected enterprise-grade integrations with CRMs, collaboration tools, and cloud platforms (AWS, GCP, Azure)",
       "Built internal agentic tools using MCP framework and RAG workflows",
       "Led solution design and architecture reviews for scalable implementations",
-      "Partnered with teams to drive adoption for customers with ARR $100K-$5M",
+      "Partnered with teams to drive adoption for customers with ARR $100K-$15M",
     ],
   },
   {
@@ -48,7 +48,7 @@ const ExperienceSection = () => {
   return (
     <section id="experience" className="py-20 md:py-32 relative">
       <div className="absolute inset-0 paper-texture pointer-events-none" />
-      
+
       <div className="container mx-auto px-4 md:px-8">
         <div className="flex items-center gap-4 mb-12">
           <Briefcase className="w-8 h-8 text-primary" />
@@ -56,7 +56,7 @@ const ExperienceSection = () => {
             Experience.
           </h2>
         </div>
-        
+
         <div className="grid gap-8 md:gap-12">
           {experiences.map((exp, index) => (
             <div
@@ -67,7 +67,7 @@ const ExperienceSection = () => {
               <div className="md:col-span-1 flex md:justify-center">
                 <div className="w-4 h-4 rounded-full bg-primary mt-2 group-hover:scale-125 transition-transform" />
               </div>
-              
+
               {/* Content */}
               <div className="md:col-span-11 retro-border retro-shadow bg-card p-6 md:p-8 hover:translate-x-1 hover:-translate-y-1 transition-transform">
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-4">
@@ -81,7 +81,7 @@ const ExperienceSection = () => {
                     {exp.period}
                   </span>
                 </div>
-                
+
                 <ul className="space-y-2">
                   {exp.highlights.map((highlight, i) => (
                     <li key={i} className="flex gap-3 text-muted-foreground">
