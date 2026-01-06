@@ -34,6 +34,8 @@ const HeroSection = () => {
             <div className="max-w-xl pt-4">
               <p className="text-muted-foreground leading-relaxed">
                 <h1>Integration Lead & AI Solutions Architect | 10+ Years of Enterprise Innovation </h1>Transforming complex business logic into scalable, AI-driven architectures. Specialized in high-stakes enterprise integrations and modernizing legacy ecosystems.
+                <br />
+                <h1>AI may write faster code, but I deliver the ownership, strategy, and collaboration that turns syntax into successful products.</h1>
               </p>
               <div className="flex flex-wrap gap-4 mt-6">
                 <a href="#contact">
@@ -41,7 +43,7 @@ const HeroSection = () => {
                     Let's get started →
                   </Button>
                 </a>
-                <a href="/Abhyuday_Bhadauriya_Resume.pdf" download>
+                <a href="abhyuday-portfolio/Abhyuday_Bhadauriya_Resume.pdf" download>
                   <Button variant="outline" size="lg" className="font-display uppercase tracking-wide">
                     <Download className="w-4 h-4 mr-2" />
                     Download Resume
