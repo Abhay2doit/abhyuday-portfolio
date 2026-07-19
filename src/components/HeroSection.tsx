@@ -3,6 +3,8 @@ import { Button } from "@/components/ui/button";
 import RetroStripes from "./RetroStripes";
 
 const HeroSection = () => {
+  const resumeUrl = `${import.meta.env.BASE_URL.replace(/\/$/, "")}/Abhyuday_Bhadauriya_Resume.pdf`;
+
   return (
     <section className="min-h-screen flex items-center relative overflow-hidden">
       {/* Background texture */}
@@ -18,7 +20,7 @@ const HeroSection = () => {
           {/* Main content */}
           <div className="lg:col-span-10 space-y-6">
             <p className="text-muted-foreground font-mono text-sm md:text-base tracking-wider uppercase">
-              Abhyuday Bhadauriya • Integration Lead
+              Abhyuday Bhadauriya • FDE Solution Architect
             </p>
 
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-display font-bold uppercase leading-none tracking-tight">
@@ -32,18 +34,28 @@ const HeroSection = () => {
             </h1>
 
             <div className="max-w-xl pt-4">
-              <p className="text-muted-foreground leading-relaxed">
-                <h1>Integration Lead & AI Solutions Architect | 10+ Years of Enterprise Innovation </h1>Transforming complex business logic into scalable, AI-driven architectures. Specialized in high-stakes enterprise integrations and modernizing legacy ecosystems.
-                <br />
-                <h1>AI may write faster code, but I deliver the ownership, strategy, and collaboration that turns syntax into successful products.</h1>
-              </p>
+              <div className="text-muted-foreground leading-relaxed space-y-4">
+                <p className="font-display text-xl md:text-2xl font-semibold text-foreground">
+                  FDE Solution Architect | Applied AI | 11+ Years of Enterprise Innovation
+                </p>
+                <p>
+                  Forward-deployed Solutions Architect designing production-ready AI workflows,
+                  enterprise integrations, and customer-facing technical solutions. Currently
+                  working in Applied AI at Enterpret, translating complex business and data
+                  challenges into scalable systems.
+                </p>
+                <p className="font-display text-xl md:text-2xl font-semibold text-foreground">
+                  AI may write faster code, but I deliver the ownership, strategy, and
+                  collaboration that turns syntax into successful products.
+                </p>
+              </div>
               <div className="flex flex-wrap gap-4 mt-6">
                 <a href="#contact">
                   <Button size="lg" className="font-display uppercase tracking-wide">
                     Let's get started →
                   </Button>
                 </a>
-                <a href="abhyuday-portfolio/Abhyuday_Bhadauriya_Resume.pdf" download>
+                <a href={resumeUrl} download>
                   <Button variant="outline" size="lg" className="font-display uppercase tracking-wide">
                     <Download className="w-4 h-4 mr-2" />
                     Download Resume
