@@ -14,24 +14,27 @@ const experiences = [
   },
   {
     company: "Observe.AI",
-    role: "Integration Lead",
-    period: "02/2024 - 03/2026",
-    highlights: [
-      "Owned integration strategy and technical delivery for strategic enterprise customers ranging from $100K to $15M ARR",
-      "Built roadmaps spanning pre-sales, technical discovery, implementation, production deployment, and customer handoff",
-      "Designed agentic workflows and LLM-based internal automations to reduce manual effort and improve implementation efficiency",
-      "Collaborated with customers and internal teams to resolve complex integration, data-delivery, and production-readiness challenges",
-    ],
-  },
-  {
-    company: "Observe.AI",
-    role: "Senior Implementation Engineer / Implementation Engineer",
-    period: "03/2020 - 04/2024",
-    highlights: [
-      "Designed and implemented secure data integrations from CCaaS and enterprise platforms using APIs, SFTP, and file-based delivery",
-      "Led technical discussions with customers and cross-functional stakeholders to align requirements, architecture, and implementation plans",
-      "Provided customized technical solutions for complex customer use cases and ensured reliable data transfer into the platform",
-      "Created implementation documentation and repeatable onboarding processes that improved delivery consistency",
+    roles: [
+      {
+        title: "Integration Lead",
+        period: "02/2024 - 03/2026",
+        highlights: [
+          "Owned integration strategy and technical delivery for strategic enterprise customers ranging from $100K to $15M ARR",
+          "Built roadmaps spanning pre-sales, technical discovery, implementation, production deployment, and customer handoff",
+          "Designed agentic workflows and LLM-based internal automations to reduce manual effort and improve implementation efficiency",
+          "Collaborated with customers and internal teams to resolve complex integration, data-delivery, and production-readiness challenges",
+        ],
+      },
+      {
+        title: "Senior Implementation Engineer / Implementation Engineer",
+        period: "03/2020 - 04/2024",
+        highlights: [
+          "Designed and implemented secure data integrations from CCaaS and enterprise platforms using APIs, SFTP, and file-based delivery",
+          "Led technical discussions with customers and cross-functional stakeholders to align requirements, architecture, and implementation plans",
+          "Provided customized technical solutions for complex customer use cases and ensured reliable data transfer into the platform",
+          "Created implementation documentation and repeatable onboarding processes that improved delivery consistency",
+        ],
+      },
     ],
   },
   {
@@ -97,21 +100,46 @@ const ExperienceSection = () => {
                     <h3 className="text-xl md:text-2xl font-display font-bold text-primary">
                       {exp.company}
                     </h3>
-                    <p className="text-lg font-semibold">{exp.role}</p>
+                    {"role" in exp && <p className="text-lg font-semibold">{exp.role}</p>}
                   </div>
-                  <span className="text-muted-foreground font-mono text-sm rounded-full border border-slate-200/80 px-3 py-1 bg-white/65 w-fit">
-                    {exp.period}
-                  </span>
+                  {"period" in exp && (
+                    <span className="text-muted-foreground font-mono text-sm rounded-full border border-slate-200/80 px-3 py-1 bg-white/65 w-fit">
+                      {exp.period}
+                    </span>
+                  )}
                 </div>
 
-                <ul className="space-y-2">
-                  {exp.highlights.map((highlight, i) => (
-                    <li key={i} className="flex gap-3 text-muted-foreground">
-                      <span className="text-secondary font-bold">›</span>
-                      <span>{highlight}</span>
-                    </li>
-                  ))}
-                </ul>
+                {"roles" in exp ? (
+                  <div className="space-y-8">
+                    {exp.roles.map((role) => (
+                      <div key={role.title}>
+                        <div className="mb-3 flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
+                          <p className="text-lg font-semibold">{role.title}</p>
+                          <span className="text-muted-foreground font-mono text-sm rounded-full border border-slate-200/80 px-3 py-1 bg-white/65 w-fit">
+                            {role.period}
+                          </span>
+                        </div>
+                        <ul className="space-y-2">
+                          {role.highlights.map((highlight, i) => (
+                            <li key={i} className="flex gap-3 text-muted-foreground">
+                              <span className="text-secondary font-bold">›</span>
+                              <span>{highlight}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <ul className="space-y-2">
+                    {exp.highlights.map((highlight, i) => (
+                      <li key={i} className="flex gap-3 text-muted-foreground">
+                        <span className="text-secondary font-bold">›</span>
+                        <span>{highlight}</span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </div>
             </div>
           ))}
