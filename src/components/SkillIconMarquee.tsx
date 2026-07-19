@@ -56,7 +56,7 @@ const SkillIconMarquee = () => {
         {[...skillIcons, ...skillIcons].map((skill, index) => (
           <div
             key={`${skill.name}-${index}`}
-            className="flex-shrink-0 flex items-center justify-center w-16 h-16 md:w-20 md:h-20 p-3 rounded-xl retro-border bg-card hover:bg-primary/10 transition-all duration-300 hover:scale-110 cursor-default group"
+            className="flex-shrink-0 flex items-center justify-center w-16 h-16 md:w-20 md:h-20 p-3 rounded-2xl cloud-shell hover:bg-primary/10 transition-all duration-300 hover:scale-110 cursor-default group"
             title={skill.name}
           >
             <div className="w-full h-full transition-transform duration-300 group-hover:scale-105 flex items-center justify-center">

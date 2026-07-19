@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Oswald:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,53 +6,51 @@
 
 @layer base {
   :root {
-    /* Retro color palette */
-    --background: 43 33% 94%;
-    --foreground: 30 10% 15%;
+    --background: 210 40% 98%;
+    --foreground: 221 39% 12%;
     
-    --card: 40 30% 96%;
-    --card-foreground: 30 10% 15%;
+    --card: 0 0% 100%;
+    --card-foreground: 221 39% 12%;
     
-    --popover: 40 30% 96%;
-    --popover-foreground: 30 10% 15%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 221 39% 12%;
     
-    --primary: 168 56% 39%;
-    --primary-foreground: 43 33% 94%;
+    --primary: 190 84% 38%;
+    --primary-foreground: 0 0% 100%;
     
-    --secondary: 16 74% 49%;
-    --secondary-foreground: 43 33% 94%;
+    --secondary: 243 75% 62%;
+    --secondary-foreground: 0 0% 100%;
     
-    --muted: 35 25% 85%;
-    --muted-foreground: 30 10% 40%;
+    --muted: 210 28% 93%;
+    --muted-foreground: 215 12% 48%;
     
-    --accent: 90 24% 32%;
-    --accent-foreground: 43 33% 94%;
+    --accent: 166 72% 39%;
+    --accent-foreground: 0 0% 100%;
     
-    --destructive: 345 64% 39%;
-    --destructive-foreground: 43 33% 94%;
+    --destructive: 0 84% 64%;
+    --destructive-foreground: 210 40% 96%;
     
-    --border: 35 20% 75%;
-    --input: 35 20% 80%;
-    --ring: 168 56% 39%;
+    --border: 213 28% 84%;
+    --input: 210 28% 90%;
+    --ring: 190 84% 38%;
     
-    --radius: 0.25rem;
+    --radius: 1rem;
     
-    /* Custom retro colors */
-    --retro-teal: 168 56% 39%;
-    --retro-orange: 16 74% 49%;
-    --retro-green: 90 24% 32%;
-    --retro-burgundy: 345 64% 39%;
-    --retro-cream: 43 33% 94%;
-    --retro-paper: 40 30% 90%;
+    --retro-teal: 188 95% 56%;
+    --retro-orange: 25 95% 62%;
+    --retro-green: 158 84% 52%;
+    --retro-burgundy: 320 76% 65%;
+    --retro-cream: 210 40% 96%;
+    --retro-paper: 210 40% 96%;
     
-    --sidebar-background: 40 30% 92%;
-    --sidebar-foreground: 30 10% 15%;
-    --sidebar-primary: 168 56% 39%;
-    --sidebar-primary-foreground: 43 33% 94%;
-    --sidebar-accent: 35 25% 85%;
-    --sidebar-accent-foreground: 30 10% 15%;
-    --sidebar-border: 35 20% 75%;
-    --sidebar-ring: 168 56% 39%;
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 221 39% 12%;
+    --sidebar-primary: 188 95% 56%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 210 28% 93%;
+    --sidebar-accent-foreground: 221 39% 12%;
+    --sidebar-border: 213 28% 84%;
+    --sidebar-ring: 188 95% 56%;
   }
 
   .dark {
@@ -102,6 +100,12 @@
 
   body {
     @apply bg-background text-foreground font-mono;
+    background:
+      radial-gradient(circle at 16% 8%, hsl(var(--primary) / 0.14), transparent 28rem),
+      radial-gradient(circle at 82% 4%, hsl(var(--secondary) / 0.12), transparent 34rem),
+      radial-gradient(circle at 58% 42%, hsl(var(--accent) / 0.08), transparent 26rem),
+      linear-gradient(180deg, hsl(210 40% 99%) 0%, hsl(208 42% 96%) 52%, hsl(214 38% 94%) 100%);
+    min-height: 100vh;
   }
   
   h1, h2, h3, h4, h5, h6 {
@@ -110,6 +114,17 @@
 }
 
 @layer components {
+  .cloud-shell {
+    background:
+      linear-gradient(135deg, hsl(0 0% 100% / 0.92), hsl(210 40% 99% / 0.68)),
+      hsl(var(--card) / 0.74);
+    border: 1px solid hsl(214 32% 74% / 0.42);
+    box-shadow:
+      0 24px 90px hsl(214 42% 30% / 0.14),
+      inset 0 1px 0 hsl(0 0% 100% / 0.86);
+    backdrop-filter: blur(24px);
+  }
+
   .retro-stripes {
     background: linear-gradient(
       135deg,
@@ -125,20 +140,27 @@
   }
   
   .paper-texture {
-    background-image: 
-      url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-    background-blend-mode: soft-light;
-    opacity: 0.03;
+    background-image:
+      linear-gradient(hsl(210 40% 98% / 0.045) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(210 40% 98% / 0.045) 1px, transparent 1px);
+    background-image:
+      linear-gradient(hsl(214 32% 72% / 0.20) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(214 32% 72% / 0.20) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: linear-gradient(to bottom, black, transparent 78%);
+    opacity: 0.48;
   }
   
   .retro-shadow {
-    box-shadow: 
-      4px 4px 0px hsl(var(--foreground) / 0.1),
-      8px 8px 0px hsl(var(--foreground) / 0.05);
+    box-shadow:
+      0 22px 80px hsl(214 42% 30% / 0.13),
+      inset 0 1px 0 hsl(0 0% 100% / 0.88);
   }
   
   .retro-border {
-    border: 2px solid hsl(var(--foreground) / 0.15);
+    border: 1px solid hsl(214 32% 74% / 0.42);
+    background: hsl(var(--card) / 0.72);
+    backdrop-filter: blur(20px);
   }
   
   .terminal-text {
@@ -198,7 +220,7 @@
 }
 
 .cursor-blink::after {
-  content: '█';
+  content: '▌';
   animation: blink 1s infinite;
   @apply ml-1 text-primary;
 }
@@ -209,7 +231,7 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: hsl(var(--muted));
+  background: hsl(var(--background));
 }
 
 ::-webkit-scrollbar-thumb {

@@ -74,9 +74,9 @@ const ExperienceSection = () => {
       <div className="container mx-auto px-4 md:px-8">
         <div className="flex items-center gap-4 mb-12">
           <Briefcase className="w-8 h-8 text-primary" />
-          <h2 className="text-4xl md:text-6xl font-display font-bold uppercase">
-            Experience.
-          </h2>
+            <h2 className="text-4xl md:text-6xl font-display font-extrabold tracking-[-0.04em]">
+              Experience.
+            </h2>
         </div>
 
         <div className="grid gap-8 md:gap-12">
@@ -87,11 +87,11 @@ const ExperienceSection = () => {
             >
               {/* Timeline indicator */}
               <div className="md:col-span-1 flex md:justify-center">
-                <div className="w-4 h-4 rounded-full bg-primary mt-2 group-hover:scale-125 transition-transform" />
+                <div className="w-4 h-4 rounded-full bg-primary shadow-[0_0_28px_hsl(var(--primary)/0.7)] mt-2 group-hover:scale-125 transition-transform" />
               </div>
 
               {/* Content */}
-              <div className="md:col-span-11 retro-border retro-shadow bg-card p-6 md:p-8 hover:translate-x-1 hover:-translate-y-1 transition-transform">
+              <div className="md:col-span-11 cloud-shell rounded-[1.5rem] p-6 md:p-8 hover:-translate-y-1 transition-transform">
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-4">
                   <div>
                     <h3 className="text-xl md:text-2xl font-display font-bold text-primary">
@@ -99,7 +99,7 @@ const ExperienceSection = () => {
                     </h3>
                     <p className="text-lg font-semibold">{exp.role}</p>
                   </div>
-                  <span className="text-muted-foreground font-mono text-sm retro-border px-3 py-1 bg-muted/50 w-fit">
+                  <span className="text-muted-foreground font-mono text-sm rounded-full border border-slate-200/80 px-3 py-1 bg-white/65 w-fit">
                     {exp.period}
                   </span>
                 </div>

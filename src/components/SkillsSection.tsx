@@ -5,8 +5,8 @@ const skillCategories = [
   {
     title: "Technical Expertise",
     icon: Code,
-    color: "text-retro-teal",
-    bgColor: "bg-retro-teal/10",
+    color: "text-primary",
+    bgColor: "bg-primary/10",
     skills: [
       "Python", "JavaScript", "React", "APIs",
       "Snowflake", "SQL/NoSQL", "AWS", "GCP", "Mongo DB",
@@ -16,8 +16,8 @@ const skillCategories = [
   {
     title: "AI & Automation",
     icon: Cpu,
-    color: "text-retro-orange",
-    bgColor: "bg-retro-orange/10",
+    color: "text-secondary",
+    bgColor: "bg-secondary/10",
     skills: [
       "Agentic Workflows", "Multi-Agent Systems",
       "Mixture of Experts (MoE)", "AI/ML Integration",
@@ -27,8 +27,8 @@ const skillCategories = [
   {
     title: "Solution Design",
     icon: Layers,
-    color: "text-retro-green",
-    bgColor: "bg-retro-green/10",
+    color: "text-accent",
+    bgColor: "bg-accent/10",
     skills: [
       "Solution Architecture", "Enterprise Integrations",
       "System Design", "ETL/ELT Workflows",
@@ -38,8 +38,8 @@ const skillCategories = [
   {
     title: "Professional Skills",
     icon: Users,
-    color: "text-retro-burgundy",
-    bgColor: "bg-retro-burgundy/10",
+    color: "text-primary",
+    bgColor: "bg-primary/10",
     skills: [
       "Stakeholder Management", "Communication",
       "Analytical Problem Solving", "Critical Thinking",
@@ -50,13 +50,13 @@ const skillCategories = [
 
 const SkillsSection = () => {
   return (
-    <section id="skills" className="py-20 md:py-32 bg-muted/30 relative">
+    <section id="skills" className="py-20 md:py-32 relative">
       <div className="absolute inset-0 paper-texture pointer-events-none" />
 
       <div className="container mx-auto px-4 md:px-8">
         <div className="flex items-center gap-4 mb-8">
           <Code className="w-8 h-8 text-primary" />
-          <h2 className="text-4xl md:text-6xl font-display font-bold uppercase">
+          <h2 className="text-4xl md:text-6xl font-display font-extrabold tracking-[-0.04em]">
             Skills.
           </h2>
         </div>
@@ -68,7 +68,7 @@ const SkillsSection = () => {
           {skillCategories.map((category, index) => (
             <div
               key={index}
-              className="retro-border retro-shadow bg-card p-6 md:p-8 hover:translate-x-1 hover:-translate-y-1 transition-transform"
+              className="cloud-shell rounded-[1.5rem] p-6 md:p-8 hover:-translate-y-1 transition-transform"
             >
               <div className="flex items-center gap-3 mb-6">
                 <div className={`p-3 rounded ${category.bgColor}`}>
@@ -81,7 +81,7 @@ const SkillsSection = () => {
                 {category.skills.map((skill, i) => (
                   <span
                     key={i}
-                    className="px-3 py-1 bg-muted text-sm font-mono retro-border hover:bg-primary hover:text-primary-foreground transition-colors cursor-default"
+                    className="px-3 py-1 rounded-full bg-white/70 text-sm font-mono border border-slate-200/80 hover:bg-primary hover:text-primary-foreground transition-colors cursor-default"
                   >
                     {skill}
                   </span>

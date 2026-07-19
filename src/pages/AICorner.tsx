@@ -32,7 +32,7 @@ const mcpMermaidDiagram = `flowchart LR
 const detailContent = {
   projects: {
     eyebrow: "Project",
-    title: "MCP_USE - Spatial MCP Command Surface",
+    title: "Spatial MCP Command Surface",
     summary:
       "A graphical, voice-first command surface for running real-world tasks through MCP tools without exposing model, provider, or tool-server logic to the browser.",
     bullets: [
@@ -80,7 +80,7 @@ const tiles = [
     icon: Sparkles,
     color: "text-primary",
     bg: "bg-primary/10",
-    description: "MCP_USE spatial command surface, technical design, and architecture notes.",
+    description: "Spatial command surface, technical design, and architecture notes.",
   },
   {
     key: "workflows",
@@ -124,18 +124,19 @@ const AICorner = () => {
     <div className="min-h-screen bg-background">
       <Navigation />
       <main className="pt-16">
-        <section className="py-16 md:py-24">
+        <section className="py-16 md:py-24 relative overflow-hidden">
+          <div className="absolute inset-0 paper-texture pointer-events-none" />
           <div className="container mx-auto px-4 md:px-8">
             {/* Header */}
             <div className="max-w-4xl mx-auto text-center mb-14">
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 border border-primary/20 rounded-full mb-6">
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/80 border border-slate-200/80 rounded-full mb-6 backdrop-blur-xl">
                 <Brain className="w-4 h-4 text-primary" />
                 <span className="font-mono text-sm text-primary uppercase tracking-wider">
                   AI Corner
                 </span>
               </div>
-              <h1 className="font-display text-4xl md:text-6xl font-bold mb-6 text-foreground">
-                AI Projects & <span className="text-primary">Workflows</span>
+              <h1 className="font-display text-4xl md:text-7xl font-extrabold tracking-[-0.05em] mb-6 text-foreground">
+                AI Projects & <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Workflows</span>
               </h1>
               <p className="text-muted-foreground text-lg leading-relaxed max-w-2xl mx-auto">
                 Exploring the intersection of artificial intelligence, automation, and innovative solutions. 
@@ -154,14 +155,14 @@ const AICorner = () => {
                     key={tile.key}
                     type="button"
                     onClick={() => setActiveTile(tile.key)}
-                    className={`group text-left bg-card border rounded-lg p-8 retro-shadow transition-all ${
+                    className={`group text-left cloud-shell rounded-[1.5rem] p-8 transition-all ${
                       isActive
-                        ? "border-primary translate-y-[-4px]"
-                        : "border-border hover:translate-y-[-4px]"
+                        ? "ring-1 ring-primary translate-y-[-4px]"
+                        : "hover:translate-y-[-4px]"
                     }`}
                     aria-pressed={isActive}
                   >
-                    <div className={`w-12 h-12 ${tile.bg} rounded-lg flex items-center justify-center mb-4`}>
+                    <div className={`w-12 h-12 ${tile.bg} rounded-2xl flex items-center justify-center mb-4`}>
                       <Icon className={`w-6 h-6 ${tile.color}`} />
                     </div>
                     <div className="flex items-center justify-between gap-4">
@@ -181,7 +182,7 @@ const AICorner = () => {
             </div>
 
             {/* Detail Panel */}
-            <div className="mt-16 max-w-6xl mx-auto retro-border retro-shadow bg-card overflow-hidden">
+            <div className="mt-16 max-w-6xl mx-auto cloud-shell rounded-[2rem] overflow-hidden">
               <div className="grid lg:grid-cols-12">
                 <div className="lg:col-span-5 p-6 md:p-8 border-b lg:border-b-0 lg:border-r border-border">
                   <p className="font-mono text-xs uppercase tracking-widest text-primary mb-3">
@@ -214,9 +215,9 @@ const AICorner = () => {
                         const Icon = node.icon;
 
                         return (
-                          <div key={node.label} className="relative bg-background retro-border p-4 min-h-[92px]">
+                          <div key={node.label} className="relative bg-white/65 border border-slate-200/80 rounded-2xl p-4 min-h-[92px]">
                             <div className="flex items-center gap-3">
-                              <div className="w-9 h-9 bg-primary/10 flex items-center justify-center rounded">
+                              <div className="w-9 h-9 bg-primary/10 flex items-center justify-center rounded-2xl">
                                 <Icon className="w-5 h-5 text-primary" />
                               </div>
                               <span className="font-display font-bold text-sm">{node.label}</span>
@@ -235,11 +236,11 @@ const AICorner = () => {
                       <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
                         Mermaid Diagram
                       </p>
-                      <span className="font-mono text-xs text-primary retro-border px-2 py-1 bg-background">
+                      <span className="font-mono text-xs text-primary rounded-full border border-slate-200/80 px-3 py-1 bg-white/65">
                         gateway-only
                       </span>
                     </div>
-                    <pre className="overflow-x-auto rounded bg-foreground text-background p-4 text-xs leading-relaxed font-mono">
+                    <pre className="overflow-x-auto rounded-2xl bg-slate-950 border border-slate-800 text-slate-100 p-4 text-xs leading-relaxed font-mono shadow-2xl">
                       <code>{mcpMermaidDiagram}</code>
                     </pre>
                   </div>
