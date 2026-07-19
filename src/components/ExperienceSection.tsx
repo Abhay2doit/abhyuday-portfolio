@@ -2,14 +2,36 @@ import { Briefcase } from "lucide-react";
 
 const experiences = [
   {
+    company: "Enterpret",
+    role: "Solutions Architect - Applied AI | Forward-Deployed Engineering",
+    period: "03/2026 - Present",
+    highlights: [
+      "Partner with enterprise customers to design AI-powered solutions using Enterpret's customer intelligence platform",
+      "Own technical delivery from discovery and solution architecture through integration, validation, rollout, and post-deployment optimization",
+      "Design and troubleshoot data integrations across Snowflake, Salesforce, SFTP, APIs, webhooks, Slack, Qualtrics, App Store, Play Store, and support data sources",
+      "Build agentic workflows and FDE utilities for validation, diagnostics, debugging, root-cause analysis, and operational execution",
+    ],
+  },
+  {
     company: "Observe.AI",
     role: "Integration Lead",
-    period: "03/2020 – Present",
+    period: "02/2024 - 03/2026",
     highlights: [
-      "Architected enterprise-grade integrations with CRMs, collaboration tools, and cloud platforms (AWS, GCP, Azure)",
-      "Built internal agentic tools using MCP framework and RAG workflows",
-      "Led solution design and architecture reviews for scalable implementations",
-      "Partnered with teams to drive adoption for customers with ARR $100K-$15M",
+      "Owned integration strategy and technical delivery for strategic enterprise customers ranging from $100K to $15M ARR",
+      "Built roadmaps spanning pre-sales, technical discovery, implementation, production deployment, and customer handoff",
+      "Designed agentic workflows and LLM-based internal automations to reduce manual effort and improve implementation efficiency",
+      "Collaborated with customers and internal teams to resolve complex integration, data-delivery, and production-readiness challenges",
+    ],
+  },
+  {
+    company: "Observe.AI",
+    role: "Senior Implementation Engineer / Implementation Engineer",
+    period: "03/2020 - 04/2024",
+    highlights: [
+      "Designed and implemented secure data integrations from CCaaS and enterprise platforms using APIs, SFTP, and file-based delivery",
+      "Led technical discussions with customers and cross-functional stakeholders to align requirements, architecture, and implementation plans",
+      "Provided customized technical solutions for complex customer use cases and ensured reliable data transfer into the platform",
+      "Created implementation documentation and repeatable onboarding processes that improved delivery consistency",
     ],
   },
   {
