@@ -1,15 +1,133 @@
 import Navigation from "@/components/Navigation";
-import { Brain, Sparkles, Lightbulb, Workflow } from "lucide-react";
+import { useState } from "react";
+import {
+  ArrowRight,
+  Brain,
+  CheckCircle2,
+  Code2,
+  GitBranch,
+  Lightbulb,
+  Network,
+  ServerCog,
+  ShieldCheck,
+  Sparkles,
+  Workflow,
+} from "lucide-react";
+
+type TileKey = "projects" | "workflows" | "ideas";
+
+const mcpMermaidDiagram = `flowchart LR
+  User["Voice / Prompt UI"] --> Gateway["Backend Gateway"]
+  Gateway --> Planner["Planner"]
+  Planner --> Decision["Decision Engine"]
+  Decision --> Runner["Tool Runner"]
+  Runner --> Host["MCP Host"]
+  Host --> Calendar["Calendar"]
+  Host --> Zomato["Zomato"]
+  Host --> Uber["Uber"]
+  Host --> Maps["Maps"]
+  Gateway --> Events["Task Events Stream"]
+  Events --> User`;
+
+const detailContent = {
+  projects: {
+    eyebrow: "Project",
+    title: "MCP_USE - Spatial MCP Command Surface",
+    summary:
+      "A graphical, voice-first command surface for running real-world tasks through MCP tools without exposing model, provider, or tool-server logic to the browser.",
+    bullets: [
+      "Constellation UI maps services like Calendar, Zomato, Uber, Maps, Email, and Payments as visible execution nodes.",
+      "Frontend stays gateway-only: task creation, approvals, app connections, and event updates flow through the backend boundary.",
+      "The interface favors calm command composition over chat, with structured prompts and connection/auth states.",
+      "Design language uses a restrained electric-green, white, and neon-orange palette that can later become theme-configurable.",
+    ],
+  },
+  workflows: {
+    eyebrow: "Workflow",
+    title: "Orchestration From Prompt To Tool Execution",
+    summary:
+      "The system is designed around a contract-first path where intent is planned, checked, executed, and streamed back as task state instead of loose frontend-side tool calls.",
+    bullets: [
+      "Planner decomposes user intent into explicit steps and required app/tool capabilities.",
+      "Decision engine handles routing, approvals, and safety checks before actions run.",
+      "Tool runner executes through isolated MCP clients so each service boundary remains clear.",
+      "Event streams keep the UI reactive without giving the browser direct access to MCP servers.",
+    ],
+  },
+  ideas: {
+    eyebrow: "Idea",
+    title: "Where This Could Go Next",
+    summary:
+      "The long-term direction is a personal operating layer: voice-first, app-aware, and visually inspectable enough that users can understand what the agent is about to do.",
+    bullets: [
+      "A dock for connected apps with visible health, auth, and permission states.",
+      "Reusable workflow cards for repeated tasks like travel planning, food ordering, calendar repair, and follow-ups.",
+      "A review mode that shows planned actions before execution, especially for purchases, messages, or scheduling.",
+      "A skills layer where new MCP tools can be added through contracts instead of redesigning the interface.",
+    ],
+  },
+} satisfies Record<TileKey, {
+  eyebrow: string;
+  title: string;
+  summary: string;
+  bullets: string[];
+}>;
+
+const tiles = [
+  {
+    key: "projects",
+    title: "Projects",
+    icon: Sparkles,
+    color: "text-primary",
+    bg: "bg-primary/10",
+    description: "MCP_USE spatial command surface, technical design, and architecture notes.",
+  },
+  {
+    key: "workflows",
+    title: "Workflows",
+    icon: Workflow,
+    color: "text-secondary",
+    bg: "bg-secondary/10",
+    description: "Prompt-to-plan-to-tool orchestration patterns and execution lifecycle.",
+  },
+  {
+    key: "ideas",
+    title: "Ideas",
+    icon: Lightbulb,
+    color: "text-accent",
+    bg: "bg-accent/10",
+    description: "Product directions for voice-first app control and agent review modes.",
+  },
+] satisfies Array<{
+  key: TileKey;
+  title: string;
+  icon: typeof Sparkles;
+  color: string;
+  bg: string;
+  description: string;
+}>;
+
+const architectureNodes = [
+  { label: "Prompt UI", icon: Brain },
+  { label: "Gateway", icon: ServerCog },
+  { label: "Planner", icon: GitBranch },
+  { label: "Decision", icon: ShieldCheck },
+  { label: "Tool Runner", icon: Code2 },
+  { label: "MCP Host", icon: Network },
+];
 
 const AICorner = () => {
+  const [activeTile, setActiveTile] = useState<TileKey>("projects");
+  const activeDetail = detailContent[activeTile];
+
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
       <main className="pt-16">
-        <section className="py-20 md:py-32">
+        <section className="py-16 md:py-24">
           <div className="container mx-auto px-4 md:px-8">
             {/* Header */}
-            <div className="max-w-4xl mx-auto text-center mb-16">
+            <div className="max-w-4xl mx-auto text-center mb-14">
               <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 border border-primary/20 rounded-full mb-6">
                 <Brain className="w-4 h-4 text-primary" />
                 <span className="font-mono text-sm text-primary uppercase tracking-wider">
@@ -25,45 +143,107 @@ const AICorner = () => {
               </p>
             </div>
 
-            {/* Placeholder Cards */}
+            {/* Category Cards */}
             <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-              <div className="bg-card border border-border rounded-lg p-8 retro-shadow hover:translate-y-[-4px] transition-transform">
-                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
-                  <Sparkles className="w-6 h-6 text-primary" />
-                </div>
-                <h3 className="font-display text-xl font-bold mb-2 text-foreground">Projects</h3>
-                <p className="text-muted-foreground text-sm">
-                  AI-powered applications and experiments coming soon.
-                </p>
-              </div>
+              {tiles.map((tile) => {
+                const Icon = tile.icon;
+                const isActive = activeTile === tile.key;
 
-              <div className="bg-card border border-border rounded-lg p-8 retro-shadow hover:translate-y-[-4px] transition-transform">
-                <div className="w-12 h-12 bg-secondary/10 rounded-lg flex items-center justify-center mb-4">
-                  <Workflow className="w-6 h-6 text-secondary" />
-                </div>
-                <h3 className="font-display text-xl font-bold mb-2 text-foreground">Workflows</h3>
-                <p className="text-muted-foreground text-sm">
-                  Automation pipelines and integration patterns coming soon.
-                </p>
-              </div>
-
-              <div className="bg-card border border-border rounded-lg p-8 retro-shadow hover:translate-y-[-4px] transition-transform">
-                <div className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center mb-4">
-                  <Lightbulb className="w-6 h-6 text-accent" />
-                </div>
-                <h3 className="font-display text-xl font-bold mb-2 text-foreground">Ideas</h3>
-                <p className="text-muted-foreground text-sm">
-                  Concepts and explorations in AI coming soon.
-                </p>
-              </div>
+                return (
+                  <button
+                    key={tile.key}
+                    type="button"
+                    onClick={() => setActiveTile(tile.key)}
+                    className={`group text-left bg-card border rounded-lg p-8 retro-shadow transition-all ${
+                      isActive
+                        ? "border-primary translate-y-[-4px]"
+                        : "border-border hover:translate-y-[-4px]"
+                    }`}
+                    aria-pressed={isActive}
+                  >
+                    <div className={`w-12 h-12 ${tile.bg} rounded-lg flex items-center justify-center mb-4`}>
+                      <Icon className={`w-6 h-6 ${tile.color}`} />
+                    </div>
+                    <div className="flex items-center justify-between gap-4">
+                      <h3 className="font-display text-xl font-bold text-foreground">{tile.title}</h3>
+                      <ArrowRight
+                        className={`w-5 h-5 transition-transform ${
+                          isActive ? "text-primary translate-x-1" : "text-muted-foreground group-hover:translate-x-1"
+                        }`}
+                      />
+                    </div>
+                    <p className="text-muted-foreground text-sm mt-3 leading-relaxed">
+                      {tile.description}
+                    </p>
+                  </button>
+                );
+              })}
             </div>
 
-            {/* Coming Soon Notice */}
-            <div className="text-center mt-16">
-              <div className="inline-block px-6 py-3 border-2 border-dashed border-muted-foreground/30 rounded-lg">
-                <p className="font-mono text-sm text-muted-foreground">
-                  Content coming soon • Stay tuned for updates
-                </p>
+            {/* Detail Panel */}
+            <div className="mt-16 max-w-6xl mx-auto retro-border retro-shadow bg-card overflow-hidden">
+              <div className="grid lg:grid-cols-12">
+                <div className="lg:col-span-5 p-6 md:p-8 border-b lg:border-b-0 lg:border-r border-border">
+                  <p className="font-mono text-xs uppercase tracking-widest text-primary mb-3">
+                    {activeDetail.eyebrow}
+                  </p>
+                  <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">
+                    {activeDetail.title}
+                  </h2>
+                  <p className="text-muted-foreground leading-relaxed mb-6">
+                    {activeDetail.summary}
+                  </p>
+
+                  <div className="space-y-3">
+                    {activeDetail.bullets.map((bullet) => (
+                      <div key={bullet} className="flex gap-3 text-sm text-muted-foreground leading-relaxed">
+                        <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                        <span>{bullet}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="lg:col-span-7 p-6 md:p-8 bg-muted/30">
+                  <div className="mb-6">
+                    <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground mb-3">
+                      Architecture Snapshot
+                    </p>
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                      {architectureNodes.map((node, index) => {
+                        const Icon = node.icon;
+
+                        return (
+                          <div key={node.label} className="relative bg-background retro-border p-4 min-h-[92px]">
+                            <div className="flex items-center gap-3">
+                              <div className="w-9 h-9 bg-primary/10 flex items-center justify-center rounded">
+                                <Icon className="w-5 h-5 text-primary" />
+                              </div>
+                              <span className="font-display font-bold text-sm">{node.label}</span>
+                            </div>
+                            <p className="font-mono text-xs text-muted-foreground mt-3">
+                              step {String(index + 1).padStart(2, "0")}
+                            </p>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  <div>
+                    <div className="flex items-center justify-between gap-4 mb-3">
+                      <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
+                        Mermaid Diagram
+                      </p>
+                      <span className="font-mono text-xs text-primary retro-border px-2 py-1 bg-background">
+                        gateway-only
+                      </span>
+                    </div>
+                    <pre className="overflow-x-auto rounded bg-foreground text-background p-4 text-xs leading-relaxed font-mono">
+                      <code>{mcpMermaidDiagram}</code>
+                    </pre>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
