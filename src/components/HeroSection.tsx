@@ -12,7 +12,7 @@ const infrastructureWords = [
 ];
 
 const terminalLines = [
-  "$ codex plan --from customer-signal",
+  "$ harness plan --from customer-signal",
   "✓ map intent to workflow boundary",
   "✓ route through backend gateway",
   "✓ validate Snowflake / SFTP / webhook paths",
@@ -33,7 +33,7 @@ const HeroSection = () => {
             <Cloud className="h-4 w-4 text-primary" />
             cloud phase
           </span>
-          <span>codex-era delivery</span>
+          <span>harness-era delivery</span>
           <span className="text-primary">fde / applied ai</span>
         </div>
 
@@ -100,7 +100,7 @@ const HeroSection = () => {
                   <span className="h-3 w-3 rounded-full bg-accent/80" />
                 </div>
                 <span className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
-                  codex session
+                  harness session
                 </span>
               </div>
 
