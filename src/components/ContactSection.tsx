@@ -16,9 +16,9 @@ const ContactSection = () => {
             </div>
             
             <p className="text-muted-foreground max-w-xl leading-relaxed">
-              I am most useful when the problem is still a little messy: integration
-              ambiguity, AI workflow design, data movement, customer-facing technical
-              strategy, or a product surface that needs to become real.
+              Let's talk about applied AI, customer delivery, or building the engineering
+              tools and practices that help a team work independently. I bring hands-on
+              implementation and technical leadership from discovery through rollout.
             </p>
             
             {/* Contact info */}
@@ -30,7 +30,7 @@ const ContactSection = () => {
                 <div className="p-2 rounded-2xl bg-secondary/10 group-hover:bg-secondary/20 transition-colors">
                   <Mail className="w-5 h-5 text-secondary" />
                 </div>
-                <span className="text-xl md:text-2xl font-display font-bold text-secondary group-hover:underline">
+                <span className="min-w-0 break-words text-lg sm:text-xl md:text-2xl font-display font-bold text-secondary group-hover:underline">
                   abhyudaysb@outlook.com
                 </span>
               </a>
@@ -48,7 +48,7 @@ const ContactSection = () => {
               </a>
               
               <a 
-                href="https://www.linkedin.com/in/abhyuday-bhadauriya-software-engineer" 
+                href="https://www.linkedin.com/in/abhyuday-bhadauriya-softwareengineer/"
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="flex items-center gap-4 group"
@@ -75,8 +75,8 @@ const ContactSection = () => {
             <div className="cloud-shell rounded-[2rem] p-6 font-mono text-sm">
               <p className="text-muted-foreground">$ contact --context</p>
               <p className="mt-4 text-primary">channel.opened</p>
-              <p className="mt-2 text-muted-foreground">scope: applied-ai, fde, integrations</p>
-              <p className="mt-2 text-muted-foreground">mode: discovery {"->"} architecture {"->"} rollout</p>
+              <p className="mt-2 text-muted-foreground">scope: applied-ai, technical-leadership</p>
+              <p className="mt-2 text-muted-foreground">mode: build {"->"} document {"->"} enable</p>
               <p className="mt-2 text-accent cursor-blink">ready</p>
             </div>
           </div>

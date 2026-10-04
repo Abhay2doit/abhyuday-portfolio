@@ -36,14 +36,14 @@ const skillCategories = [
     ],
   },
   {
-    title: "Professional Skills",
+    title: "Technical Leadership & Delivery",
     icon: Users,
     color: "text-primary",
     bgColor: "bg-primary/10",
     skills: [
-      "Stakeholder Management", "Communication",
-      "Analytical Problem Solving", "Critical Thinking",
-      "Ownership", "Collaboration"
+      "Team Building", "Delivery Planning",
+      "Implementation Standards", "Technical Documentation",
+      "Escalation Processes", "Cross-Functional Collaboration"
     ],
   },
 ];

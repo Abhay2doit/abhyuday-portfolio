@@ -6,10 +6,11 @@ const experiences = [
     role: "Solutions Architect - Applied AI | Forward-Deployed Engineering",
     period: "03/2026 - Present",
     highlights: [
-      "Partner with enterprise customers to design AI-powered solutions using Enterpret's customer intelligence platform",
       "Own technical delivery from discovery and solution architecture through integration, validation, rollout, and post-deployment optimization",
+      "Help establish the team's FDE practices through implementation standards, reusable tooling, technical documentation, and escalation processes",
       "Design and troubleshoot data integrations across Snowflake, Salesforce, SFTP, APIs, webhooks, Slack, Qualtrics, App Store, Play Store, and support data sources",
-      "Build agentic workflows and FDE utilities for validation, diagnostics, debugging, root-cause analysis, and operational execution",
+      "Build reusable skills, plugins, and agentic workflows with clear guardrails to automate recurring engineering tasks",
+      "Partner with Product, Engineering, and Customer Success to resolve delivery blockers and turn recurring customer needs into platform improvements",
     ],
   },
   {
@@ -19,7 +20,8 @@ const experiences = [
         title: "Integration Lead",
         period: "02/2024 - 03/2026",
         highlights: [
-          "Owned integration strategy and technical delivery for strategic enterprise customers ranging from $100K to $15M ARR",
+          "Built the integration team from scratch while remaining a hands-on individual contributor, establishing documentation and delivery processes that helped the team become self-sustaining",
+          "Owned integration strategy and technical delivery for strategic enterprise customers, including DoorDash, SoFi, and Uber",
           "Built roadmaps spanning pre-sales, technical discovery, implementation, production deployment, and customer handoff",
           "Designed agentic workflows and LLM-based internal automations to reduce manual effort and improve implementation efficiency",
           "Collaborated with customers and internal teams to resolve complex integration, data-delivery, and production-readiness challenges",
