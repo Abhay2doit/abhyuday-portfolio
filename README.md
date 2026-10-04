@@ -62,7 +62,18 @@ This project is built with:
 
 ## How can I deploy this project?
 
-Simply open [Lovable](https://lovable.dev/projects/49c1786b-2cb1-4cdd-a56a-2fe39d749173) and click on Share -> Publish.
+The portfolio is hosted at [GitHub Pages](https://abhay2doit.github.io/abhyuday-portfolio/).
+
+The **Deploy portfolio** workflow checks types and builds pull requests targeting
+`main`. Pushes to `main`, including merged pull requests, also publish the built
+`dist` directory to GitHub Pages. Deployment starts only after the build succeeds.
+
+GitHub Pages must use **GitHub Actions** as its publishing source. To redeploy
+manually, open the workflow in the repository's Actions tab and select **Run
+workflow** on `main`.
+
+The build includes `404.html` so direct links such as `/ai-corner` load the React
+application. The `github-pages` environment must allow deployments from `main`.
 
 ## Can I connect a custom domain to my Lovable project?
 
