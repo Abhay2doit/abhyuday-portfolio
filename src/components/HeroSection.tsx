@@ -1,22 +1,13 @@
-import { ArrowRight, CheckCircle2, Cloud, Download, Terminal } from "lucide-react";
+import { ArrowRight, CheckCircle2, Code2, Download, Terminal } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-const infrastructureWords = [
-  "observable",
-  "typed",
-  "evented",
-  "gateway-owned",
-  "recoverable",
-  "customer-shaped",
-  "production-ready",
-];
-
 const terminalLines = [
-  "$ harness plan --from customer-signal",
-  "✓ map intent to workflow boundary",
-  "✓ route through backend gateway",
-  "✓ validate Snowflake / SFTP / webhook paths",
-  "✓ ship with diagnostics, docs, and ownership",
+  "$ harness plan --from customer-problem",
+  "define scope, ownership, and success criteria",
+  "build and validate the solution",
+  "document decisions and delivery steps",
+  "turn recurring work into reusable tooling",
+  "close the loop with customer feedback",
 ];
 
 const HeroSection = () => {
@@ -30,43 +21,27 @@ const HeroSection = () => {
       <div className="container mx-auto px-4 md:px-8 py-24 md:py-28">
         <div className="mb-10 flex flex-wrap items-center gap-3 font-mono text-xs uppercase tracking-[0.22em] text-muted-foreground">
           <span className="inline-flex items-center gap-2 rounded-full border border-slate-200/80 bg-white/80 px-4 py-2 backdrop-blur-xl">
-            <Cloud className="h-4 w-4 text-primary" />
-            cloud phase
+            <Code2 className="h-4 w-4 text-primary" />
+            Abhyuday Bhadauriya
           </span>
-          <span>harness-era delivery</span>
           <span className="text-primary">fde / applied ai</span>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
           <div className="lg:col-span-7">
-            <h1 className="max-w-5xl text-5xl font-extrabold leading-[0.95] tracking-[-0.04em] text-foreground md:text-7xl lg:text-[5.8rem]">
-              Forward-deployed
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-secondary">
-                AI systems
+            <h1 className="max-w-3xl text-3xl font-extrabold leading-[1.08] text-foreground sm:text-4xl md:text-5xl xl:text-[3.5rem]">
+              <span className="block">Hands-on engineering.</span>
+              <span className="mt-2 block text-primary">
+                Technical leadership.
               </span>
-              built like cloud infrastructure.
+              <span className="mt-2 block">Teams that deliver.</span>
             </h1>
 
-            <p className="mt-7 max-w-2xl text-lg leading-8 text-muted-foreground">
-              I design the layer between customer ambiguity and production execution:
-              orchestration, integrations, diagnostics, rollout plans, and the human
-              ownership that makes AI useful after the demo.
-            </p>
-
-            <div className="mt-7 flex flex-wrap gap-2">
-              {infrastructureWords.map((word) => (
-                <span
-                  key={word}
-                  className="rounded-full border border-slate-200/80 bg-white/70 px-3 py-2 font-mono text-xs uppercase tracking-[0.18em] text-muted-foreground"
-                >
-                  {word}
-                </span>
-              ))}
-            </div>
-
-            <p className="mt-7 max-w-2xl font-display text-xl font-semibold leading-8 text-foreground md:text-2xl">
-              AI may write faster code, but I deliver the ownership, strategy, and
-              collaboration that turns syntax into successful products.
+            <p className="mt-7 max-w-2xl text-base leading-7 text-muted-foreground md:text-lg md:leading-8">
+              I build applied AI solutions and the tooling, standards, and delivery
+              processes that help teams work independently. At Observe.AI, I built the
+              integration team from scratch. At Enterpret, I own customer delivery and
+              help establish FDE practices while staying hands-on with engineering.
             </p>
 
               <div className="flex flex-wrap gap-4 mt-7">
@@ -107,7 +82,7 @@ const HeroSection = () => {
               <div className="space-y-4 p-6">
                 <div className="flex items-center gap-3 text-primary">
                   <Terminal className="h-5 w-5" />
-                  <span className="font-mono text-sm">/systems/customer-intelligence</span>
+                  <span className="min-w-0 break-words font-mono text-sm">/engineering/customer-delivery</span>
                 </div>
 
                 <div className="space-y-3 font-mono text-sm">
@@ -120,7 +95,7 @@ const HeroSection = () => {
                       <span>{line}</span>
                     </div>
                   ))}
-                  <div className="text-primary cursor-blink">$ ship --with-context</div>
+                  <div className="text-primary cursor-blink">$ ship --with-ownership</div>
                 </div>
 
                 <div className="grid grid-cols-3 gap-3 pt-5">
