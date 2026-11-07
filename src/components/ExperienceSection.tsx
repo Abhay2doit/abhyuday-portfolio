@@ -1,154 +1,59 @@
-import { Briefcase } from "lucide-react";
-
-const experiences = [
+const experience = [
   {
     company: "Enterpret",
-    role: "Solutions Architect - Applied AI | Forward-Deployed Engineering",
-    period: "03/2026 - Present",
-    highlights: [
-      "Own technical delivery from discovery and solution architecture through integration, validation, rollout, and post-deployment optimization",
-      "Help establish the team's FDE practices through implementation standards, reusable tooling, technical documentation, and escalation processes",
-      "Design and troubleshoot data integrations across Snowflake, Salesforce, SFTP, APIs, webhooks, Slack, Qualtrics, App Store, Play Store, and support data sources",
-      "Build reusable skills, plugins, and agentic workflows with clear guardrails to automate recurring engineering tasks",
-      "Partner with Product, Engineering, and Customer Success to resolve delivery blockers and turn recurring customer needs into platform improvements",
-    ],
+    role: "Solutions Architect, Applied AI · Forward-Deployed Engineering",
+    period: "Mar 2026 — Present",
+    detail: "Own customer delivery from discovery and solution design through integration, validation, and rollout. Build data integrations and reusable tooling, and work with Product, Engineering, and Customer Success on delivery blockers and recurring needs.",
   },
   {
     company: "Observe.AI",
-    roles: [
-      {
-        title: "Integration Lead",
-        period: "02/2024 - 03/2026",
-        highlights: [
-          "Built the integration team from scratch while remaining a hands-on individual contributor, establishing documentation and delivery processes that helped the team become self-sustaining",
-          "Owned integration strategy and technical delivery for strategic enterprise customers, including DoorDash, SoFi, and Uber",
-          "Built roadmaps spanning pre-sales, technical discovery, implementation, production deployment, and customer handoff",
-          "Designed agentic workflows and LLM-based internal automations to reduce manual effort and improve implementation efficiency",
-          "Collaborated with customers and internal teams to resolve complex integration, data-delivery, and production-readiness challenges",
-        ],
-      },
-      {
-        title: "Senior Implementation Engineer / Implementation Engineer",
-        period: "03/2020 - 04/2024",
-        highlights: [
-          "Designed and implemented secure data integrations from CCaaS and enterprise platforms using APIs, SFTP, and file-based delivery",
-          "Led technical discussions with customers and cross-functional stakeholders to align requirements, architecture, and implementation plans",
-          "Provided customized technical solutions for complex customer use cases and ensured reliable data transfer into the platform",
-          "Created implementation documentation and repeatable onboarding processes that improved delivery consistency",
-        ],
-      },
-    ],
+    role: "Integration Lead",
+    period: "Feb 2024 — Mar 2026",
+    detail: "Built the integration team while remaining hands-on, and led enterprise integration strategy and delivery. Also held Senior Implementation Engineer and Implementation Engineer roles (Mar 2020 — Apr 2024).",
   },
   {
-    company: "Unbxd Inc (Netcore)",
+    company: "Unbxd (Netcore)",
     role: "Solution Engineer",
-    period: "07/2019 – 03/2020",
-    highlights: [
-      "Built tools for customer onboarding and integration",
-      "Delivered high-quality product experiences with cross-functional teams",
-      "Drove implementation planning and troubleshooting",
-    ],
+    period: "Jul 2019 — Mar 2020",
+    detail: "Customer onboarding, integration, and implementation planning.",
   },
   {
     company: "Bloomreach",
     role: "Solution Engineer",
-    period: "09/2017 – 06/2019",
-    highlights: [
-      "Primary technical owner ensuring customer success through integrations",
-      "Analyzed configurations, logs, and application data",
-      "Standardized escalation processes across teams",
-    ],
+    period: "Sep 2017 — Jun 2019",
+    detail: "Customer integrations, troubleshooting, and escalation processes.",
   },
   {
     company: "LTI",
     role: "Software Engineer",
-    period: "11/2014 – 08/2017",
-    highlights: [
-      "Provided technical solutions for CITI applications",
-      "Client-facing liaison for issue resolution",
-      "Developed documentation for onboarding",
-    ],
+    period: "Nov 2014 — Aug 2017",
+    detail: "Enterprise application work and client issue resolution.",
   },
 ];
 
-const ExperienceSection = () => {
-  return (
-    <section id="experience" className="py-20 md:py-32 relative">
-      <div className="absolute inset-0 paper-texture pointer-events-none" />
-
-      <div className="container mx-auto px-4 md:px-8">
-        <div className="flex items-center gap-4 mb-12">
-          <Briefcase className="w-8 h-8 text-primary" />
-            <h2 className="text-4xl md:text-6xl font-display font-extrabold tracking-[-0.04em]">
-              Experience.
-            </h2>
-        </div>
-
-        <div className="grid gap-8 md:gap-12">
-          {experiences.map((exp, index) => (
-            <div
-              key={index}
-              className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 group"
-            >
-              {/* Timeline indicator */}
-              <div className="md:col-span-1 flex md:justify-center">
-                <div className="w-4 h-4 rounded-full bg-primary shadow-[0_0_28px_hsl(var(--primary)/0.7)] mt-2 group-hover:scale-125 transition-transform" />
-              </div>
-
-              {/* Content */}
-              <div className="md:col-span-11 cloud-shell rounded-[1.5rem] p-6 md:p-8 hover:-translate-y-1 transition-transform">
-                <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-4">
-                  <div>
-                    <h3 className="text-xl md:text-2xl font-display font-bold text-primary">
-                      {exp.company}
-                    </h3>
-                    {"role" in exp && <p className="text-lg font-semibold">{exp.role}</p>}
-                  </div>
-                  {"period" in exp && (
-                    <span className="text-muted-foreground font-mono text-sm rounded-full border border-slate-200/80 px-3 py-1 bg-white/65 w-fit">
-                      {exp.period}
-                    </span>
-                  )}
-                </div>
-
-                {"roles" in exp ? (
-                  <div className="space-y-8">
-                    {exp.roles.map((role) => (
-                      <div key={role.title}>
-                        <div className="mb-3 flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
-                          <p className="text-lg font-semibold">{role.title}</p>
-                          <span className="text-muted-foreground font-mono text-sm rounded-full border border-slate-200/80 px-3 py-1 bg-white/65 w-fit">
-                            {role.period}
-                          </span>
-                        </div>
-                        <ul className="space-y-2">
-                          {role.highlights.map((highlight, i) => (
-                            <li key={i} className="flex gap-3 text-muted-foreground">
-                              <span className="text-secondary font-bold">›</span>
-                              <span>{highlight}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    ))}
-                  </div>
-                ) : (
-                  <ul className="space-y-2">
-                    {exp.highlights.map((highlight, i) => (
-                      <li key={i} className="flex gap-3 text-muted-foreground">
-                        <span className="text-secondary font-bold">›</span>
-                        <span>{highlight}</span>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </div>
-            </div>
-          ))}
-        </div>
+const ExperienceSection = () => (
+  <section id="experience" className="section-space anchor-section border-t border-border" aria-labelledby="experience-title">
+    <div className="container mx-auto px-4 md:px-8">
+      <div className="mb-12 md:mb-14">
+        <p className="eyebrow mb-4">Experience</p>
+        <h2 id="experience-title" className="section-title">Where I’ve done the work.</h2>
       </div>
-    </section>
-  );
-};
+      <ol className="divide-y divide-border border-y border-border">
+        {experience.map((item) => (
+          <li key={item.company} className="grid gap-2 py-6 md:grid-cols-12 md:gap-8 md:py-7">
+            <div className="md:col-span-3">
+              <h3 className="text-lg font-semibold">{item.company}</h3>
+              <p className="mt-1 text-sm text-muted-foreground">{item.period}</p>
+            </div>
+            <div className="md:col-span-9">
+              <p className="font-medium">{item.role}</p>
+              <p className="mt-2 max-w-3xl text-sm leading-6 text-muted-foreground">{item.detail}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+);
 
 export default ExperienceSection;

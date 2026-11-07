@@ -123,7 +123,7 @@ const AICorner = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
-      <main className="pt-16">
+      <main>
         <section className="py-16 md:py-24 relative overflow-hidden">
           <div className="absolute inset-0 paper-texture pointer-events-none" />
           <div className="container mx-auto px-4 md:px-8">
