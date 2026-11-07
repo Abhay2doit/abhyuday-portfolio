@@ -16,6 +16,7 @@ const Navigation = () => {
   const location = useLocation();
 
   const handleNavClick = (link: typeof navLinks[number]) => {
+    const wasOpen = isOpen;
     setIsOpen(false);
     if (!link.isHash) {
       navigate(link.href);
@@ -26,7 +27,12 @@ const Navigation = () => {
       window.setTimeout(() => document.querySelector(link.href)?.scrollIntoView({ behavior: "smooth" }), 100);
       return;
     }
-    document.querySelector(link.href)?.scrollIntoView({ behavior: "smooth" });
+    const scrollToSection = () => document.querySelector(link.href)?.scrollIntoView({ behavior: "smooth" });
+    if (wasOpen) {
+      window.setTimeout(scrollToSection, 50);
+    } else {
+      scrollToSection();
+    }
   };
 
   const resumeUrl = `${import.meta.env.BASE_URL.replace(/\/$/, "")}/Abhyuday_Bhadauriya_Resume.pdf`;
