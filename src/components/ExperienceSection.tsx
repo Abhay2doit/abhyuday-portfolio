@@ -34,13 +34,13 @@ const experience = [
 const ExperienceSection = () => (
   <section id="experience" className="section-space anchor-section border-t border-border" aria-labelledby="experience-title">
     <div className="container mx-auto px-4 md:px-8">
-      <div className="mb-12 md:mb-14">
+      <div data-reveal className="mb-12 md:mb-14">
         <p className="eyebrow mb-4">Experience</p>
         <h2 id="experience-title" className="section-title">Where I’ve done the work.</h2>
       </div>
       <ol className="divide-y divide-border border-y border-border">
         {experience.map((item) => (
-          <li key={item.company} className="grid gap-2 py-6 md:grid-cols-12 md:gap-8 md:py-7">
+          <li data-reveal key={item.company} className="grid gap-2 py-6 md:grid-cols-12 md:gap-8 md:py-7">
             <div className="md:col-span-3">
               <h3 className="text-lg font-semibold">{item.company}</h3>
               <p className="mt-1 text-sm text-muted-foreground">{item.period}</p>

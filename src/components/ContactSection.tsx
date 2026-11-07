@@ -1,11 +1,12 @@
 import { ArrowUpRight, Mail, Phone } from "lucide-react";
-import { profile } from "@/data/profile";
+import { profile, sitePath } from "@/data/profile";
 
 const ContactSection = () => (
-  <section id="contact" className="section-space anchor-section border-t border-border" aria-labelledby="contact-title">
-    <div className="container mx-auto px-4 md:px-8">
+  <section id="contact" className="contact-section section-space anchor-section border-t border-border" aria-labelledby="contact-title">
+    <img className="contact-art" src={sitePath("/abstract-connections.png")} width="512" height="512" alt="" aria-hidden="true" loading="lazy" />
+    <div className="container relative mx-auto px-4 md:px-8">
       <p className="eyebrow mb-4">Contact</p>
-      <div className="grid gap-8 md:grid-cols-12 md:items-end">
+      <div data-reveal className="grid gap-8 md:grid-cols-12 md:items-end">
         <div className="md:col-span-7">
           <h2 id="contact-title" className="section-title">Let’s talk about the work.</h2>
           <p className="mt-5 max-w-xl text-base leading-7 text-muted-foreground">For conversations about applied AI, integrations, or customer-facing engineering, reach me by email or on LinkedIn.</p>

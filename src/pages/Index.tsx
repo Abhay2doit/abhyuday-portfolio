@@ -1,3 +1,4 @@
+import { useReveal } from "@/hooks/use-reveal";
 import Navigation from "@/components/Navigation";
 import HeroSection from "@/components/HeroSection";
 import ExperienceSection from "@/components/ExperienceSection";
@@ -6,6 +7,7 @@ import ProjectsSection from "@/components/ProjectsSection";
 import ContactSection from "@/components/ContactSection";
 
 const Index = () => {
+  useReveal();
   return (
     <div className="min-h-screen bg-background">
       <Navigation />

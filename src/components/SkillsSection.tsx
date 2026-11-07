@@ -15,7 +15,7 @@ const SkillsSection = () => (
         </div>
         <dl className="divide-y divide-border border-y border-border md:col-span-8">
           {groups.map((group) => (
-            <div key={group.name} className="grid gap-2 py-5 sm:grid-cols-3 sm:gap-6">
+            <div data-reveal key={group.name} className="grid gap-2 py-5 sm:grid-cols-3 sm:gap-6">
               <dt className="text-sm font-semibold">{group.name}</dt>
               <dd className="text-sm leading-6 text-muted-foreground sm:col-span-2">{group.items}</dd>
             </div>

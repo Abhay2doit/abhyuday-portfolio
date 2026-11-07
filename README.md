@@ -49,6 +49,15 @@ before publishing changes to `main`.
 Keep content factual. Case studies currently describe qualitative outcomes;
 no unsupported metrics or customer claims should be added.
 
+## Visual theme and motion
+
+The review branch uses a pure white background and blue emphasis for Applied AI.
+The original abstract artwork is in `public/abstract-connections.png`; its
+generation prompt is saved in `assets/abstract-connections.prompt.txt`.
+The hero has a pause control, and all motion respects reduced-motion preferences.
+Offscreen content reveals progressively with IntersectionObserver; the initial
+server-rendered content stays visible without JavaScript.
+
 ## Crawlers and discovery
 
 All public content is served in the initial HTML. `public/llms.txt` provides an
