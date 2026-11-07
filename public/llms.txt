@@ -1,0 +1,18 @@
+# Abhyuday Bhadauriya
+
+> Solutions Architect and forward-deployed engineer based in Bengaluru, India. Applied AI, enterprise integrations, and customer delivery.
+
+## Profile and experience
+- [Portfolio](https://abhay2doit.github.io/abhyuday-portfolio/): Introduction, employment history, skills, and contact links.
+- [LinkedIn](https://www.linkedin.com/in/abhyuday-bhadauriya-softwareengineer/)
+- [GitHub](https://github.com/Abhay2doit)
+
+## Selected work
+- [Integration team](https://abhay2doit.github.io/abhyuday-portfolio/projects/integration-team/): Hands-on integration engineering, documentation, and delivery ownership at Observe.AI.
+- [Pipeline validation](https://abhay2doit.github.io/abhyuday-portfolio/projects/pipeline-validation/): Snowflake, webhooks, CSV validation, watermarks, and ingestion diagnostics.
+- [Onboarding workflows](https://abhay2doit.github.io/abhyuday-portfolio/projects/onboarding-workflows/): API-backed onboarding, SSO/MFA, implementation progress, and handoffs.
+
+## AI notes
+- [Project architecture](https://abhay2doit.github.io/abhyuday-portfolio/ai-corner/)
+- [Workflow orchestration](https://abhay2doit.github.io/abhyuday-portfolio/ai-corner/workflows/)
+- [Product ideas](https://abhay2doit.github.io/abhyuday-portfolio/ai-corner/ideas/)
