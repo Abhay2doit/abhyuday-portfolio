@@ -135,3 +135,17 @@
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
 }
+
+/* Case-study figures summarize the actual scope using readable HTML. */
+.work-figure { padding: 2rem 0; border-block: 1px solid hsl(var(--border)); }
+.work-flow { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 2rem; }
+.work-flow li { position: relative; display: flex; flex-direction: column; gap: 1rem; padding-top: 1rem; border-top: 2px solid hsl(var(--primary)); font-size: 1rem; line-height: 1.5; }
+.work-flow li:not(:last-child)::after { content: "→"; position: absolute; right: -1.5rem; top: 1rem; color: hsl(var(--primary)); }
+.project-title-link:hover { color: hsl(var(--primary)); text-decoration: underline; text-underline-offset: 5px; }
+.skip-link { position: fixed; top: -5rem; left: 1rem; z-index: 60; padding: 0.75rem 1rem; background: hsl(var(--background)); border: 1px solid hsl(var(--primary)); }
+.skip-link:focus { top: 0.5rem; }
+@media (max-width: 640px) {
+  .work-flow { grid-template-columns: 1fr; gap: 1.5rem; }
+  .work-flow li { flex-direction: row; gap: 1rem; }
+  .work-flow li:not(:last-child)::after { content: none; }
+}

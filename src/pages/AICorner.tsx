@@ -1,5 +1,5 @@
 import Navigation from "@/components/Navigation";
-import { useState } from "react";
+import { sitePath } from "@/data/profile";
 import {
   ArrowRight,
   Brain,
@@ -152,14 +152,13 @@ const tiles = [
   description: string;
 }>;
 
-const AICorner = () => {
-  const [activeTile, setActiveTile] = useState<TileKey>("projects");
+const AICorner = ({ activeTile = "projects" }: { activeTile?: TileKey }) => {
   const activeDetail = detailContent[activeTile];
 
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
-      <main>
+      <main id="main-content">
         <section className="py-16 md:py-24 relative overflow-hidden">
           <div className="absolute inset-0 paper-texture pointer-events-none" />
           <div className="container mx-auto px-4 md:px-8">
@@ -187,16 +186,15 @@ const AICorner = () => {
                 const isActive = activeTile === tile.key;
 
                 return (
-                  <button
+                  <a
                     key={tile.key}
-                    type="button"
-                    onClick={() => setActiveTile(tile.key)}
+                    href={sitePath(tile.key === "projects" ? "/ai-corner/" : `/ai-corner/${tile.key}/`)}
                     className={`group text-left cloud-shell rounded-[1.5rem] p-8 transition-all ${
                       isActive
                         ? "ring-1 ring-primary translate-y-[-4px]"
                         : "hover:translate-y-[-4px]"
                     }`}
-                    aria-pressed={isActive}
+                    aria-current={isActive ? "page" : undefined}
                   >
                     <div className={`w-12 h-12 ${tile.bg} rounded-2xl flex items-center justify-center mb-4`}>
                       <Icon className={`w-6 h-6 ${tile.color}`} />
@@ -212,7 +210,7 @@ const AICorner = () => {
                     <p className="text-muted-foreground text-sm mt-3 leading-relaxed">
                       {tile.description}
                     </p>
-                  </button>
+                  </a>
                 );
               })}
             </div>

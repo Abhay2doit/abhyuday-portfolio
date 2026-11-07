@@ -14,19 +14,19 @@ const experience = [
   {
     company: "Unbxd (Netcore)",
     role: "Solution Engineer",
-    period: "Jul 2019 — Mar 2020",
+    period: "Aug 2019 — Mar 2020",
     detail: "Customer onboarding, integration, and implementation planning.",
   },
   {
     company: "Bloomreach",
     role: "Solution Engineer",
-    period: "Sep 2017 — Jun 2019",
+    period: "Sep 2017 — Jul 2019",
     detail: "Customer integrations, troubleshooting, and escalation processes.",
   },
   {
     company: "LTI",
     role: "Software Engineer",
-    period: "Nov 2014 — Aug 2017",
+    period: "Nov 2014 — Sep 2017",
     detail: "Enterprise application work and client issue resolution.",
   },
 ];

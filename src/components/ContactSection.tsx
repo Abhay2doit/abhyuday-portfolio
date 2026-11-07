@@ -1,4 +1,5 @@
 import { ArrowUpRight, Mail, Phone } from "lucide-react";
+import { profile } from "@/data/profile";
 
 const ContactSection = () => (
   <section id="contact" className="section-space anchor-section border-t border-border" aria-labelledby="contact-title">
@@ -12,7 +13,8 @@ const ContactSection = () => (
         <div className="flex flex-col items-start gap-4 md:col-span-5 md:items-end">
           <a className="contact-link" href="mailto:abhyudaysb@outlook.com"><Mail aria-hidden="true" size={18} /> abhyudaysb@outlook.com <ArrowUpRight aria-hidden="true" size={16} /></a>
           <a className="contact-link" href="tel:+919770324776"><Phone aria-hidden="true" size={18} /> +91 9770324776 <ArrowUpRight aria-hidden="true" size={16} /></a>
-          <a className="contact-link" href="https://www.linkedin.com/in/abhyuday-bhadauriya-softwareengineer/" target="_blank" rel="noopener noreferrer">LinkedIn <ArrowUpRight aria-hidden="true" size={16} /></a>
+          <a className="contact-link" href={profile.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn <ArrowUpRight aria-hidden="true" size={16} /></a>
+          <a className="contact-link" href={profile.github} target="_blank" rel="noopener noreferrer">GitHub <ArrowUpRight aria-hidden="true" size={16} /></a>
         </div>
       </div>
       <footer className="mt-16 flex flex-col gap-2 border-t border-border pt-5 text-xs text-muted-foreground sm:flex-row sm:justify-between">
