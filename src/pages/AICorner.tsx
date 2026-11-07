@@ -5,6 +5,7 @@ import {
   Brain,
   CheckCircle2,
   Code2,
+  Eye,
   GitBranch,
   Lightbulb,
   Network,
@@ -15,19 +16,6 @@ import {
 } from "lucide-react";
 
 type TileKey = "projects" | "workflows" | "ideas";
-
-const mcpMermaidDiagram = `flowchart LR
-  User["Voice / Prompt UI"] --> Gateway["Backend Gateway"]
-  Gateway --> Planner["Planner"]
-  Planner --> Decision["Decision Engine"]
-  Decision --> Runner["Tool Runner"]
-  Runner --> Host["MCP Host"]
-  Host --> Calendar["Calendar"]
-  Host --> Zomato["Zomato"]
-  Host --> Uber["Uber"]
-  Host --> Maps["Maps"]
-  Gateway --> Events["Task Events Stream"]
-  Events --> User`;
 
 const detailContent = {
   projects: {
@@ -41,6 +29,24 @@ const detailContent = {
       "The interface favors calm command composition over chat, with structured prompts and connection/auth states.",
       "Design language uses a restrained electric-green, white, and neon-orange palette that can later become theme-configurable.",
     ],
+    snapshotTitle: "Project architecture",
+    snapshotBadge: "gateway boundary",
+    nodes: [
+      { label: "Prompt UI", icon: Brain },
+      { label: "Gateway API", icon: ServerCog },
+      { label: "Spatial canvas", icon: Network },
+      { label: "MCP Host", icon: Code2 },
+      { label: "App services", icon: Workflow },
+      { label: "Task events", icon: GitBranch },
+    ],
+    diagram: `flowchart LR
+  User["Voice / Prompt UI"] --> Gateway["Backend Gateway"]
+  Gateway --> Canvas["Spatial Command Canvas"]
+  Canvas --> Gateway
+  Gateway --> Host["MCP Host"]
+  Host --> Apps["Connected App Services"]
+  Gateway --> Events["Task Events"]
+  Events --> Canvas`,
   },
   workflows: {
     eyebrow: "Workflow",
@@ -53,6 +59,24 @@ const detailContent = {
       "Tool runner executes through isolated MCP clients so each service boundary remains clear.",
       "Event streams keep the UI reactive without giving the browser direct access to MCP servers.",
     ],
+    snapshotTitle: "Execution flow",
+    snapshotBadge: "plan · check · run",
+    nodes: [
+      { label: "Prompt", icon: Brain },
+      { label: "Planner", icon: GitBranch },
+      { label: "Decision & approval", icon: ShieldCheck },
+      { label: "Tool runner", icon: Code2 },
+      { label: "MCP clients", icon: Network },
+      { label: "Event stream", icon: ServerCog },
+    ],
+    diagram: `flowchart LR
+  Prompt["User Intent"] --> Planner["Planner"]
+  Planner --> Decision["Decision Engine"]
+  Decision -->|approved| Runner["Tool Runner"]
+  Runner --> Clients["Isolated MCP Clients"]
+  Clients --> Services["App Services"]
+  Services --> Events["Task Events"]
+  Events --> Prompt`,
   },
   ideas: {
     eyebrow: "Idea",
@@ -65,12 +89,33 @@ const detailContent = {
       "A review mode that shows planned actions before execution, especially for purchases, messages, or scheduling.",
       "A skills layer where new MCP tools can be added through contracts instead of redesigning the interface.",
     ],
+    snapshotTitle: "Future concept map",
+    snapshotBadge: "proposed direction",
+    nodes: [
+      { label: "Connected apps", icon: Network },
+      { label: "Workflow library", icon: Workflow },
+      { label: "Action preview", icon: Eye },
+      { label: "User review", icon: ShieldCheck },
+      { label: "Skills & tools", icon: Code2 },
+      { label: "Activity history", icon: GitBranch },
+    ],
+    diagram: `flowchart LR
+  Apps["Connected Apps"] --> Library["Reusable Workflows"]
+  Library --> Preview["Planned Action Preview"]
+  Preview --> Review["User Review"]
+  Review -->|approved| Tools["Skills & MCP Tools"]
+  Tools --> History["Visible Activity History"]
+  History --> Preview`,
   },
 } satisfies Record<TileKey, {
   eyebrow: string;
   title: string;
   summary: string;
   bullets: string[];
+  snapshotTitle: string;
+  snapshotBadge: string;
+  nodes: Array<{ label: string; icon: typeof Brain }>;
+  diagram: string;
 }>;
 
 const tiles = [
@@ -106,15 +151,6 @@ const tiles = [
   bg: string;
   description: string;
 }>;
-
-const architectureNodes = [
-  { label: "Prompt UI", icon: Brain },
-  { label: "Gateway", icon: ServerCog },
-  { label: "Planner", icon: GitBranch },
-  { label: "Decision", icon: ShieldCheck },
-  { label: "Tool Runner", icon: Code2 },
-  { label: "MCP Host", icon: Network },
-];
 
 const AICorner = () => {
   const [activeTile, setActiveTile] = useState<TileKey>("projects");
@@ -208,10 +244,10 @@ const AICorner = () => {
                 <div className="lg:col-span-7 p-6 md:p-8 bg-muted/30">
                   <div className="mb-6">
                     <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground mb-3">
-                      Architecture Snapshot
+                      {activeDetail.snapshotTitle}
                     </p>
                     <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                      {architectureNodes.map((node, index) => {
+                      {activeDetail.nodes.map((node, index) => {
                         const Icon = node.icon;
 
                         return (
@@ -237,11 +273,11 @@ const AICorner = () => {
                         Mermaid Diagram
                       </p>
                       <span className="font-mono text-xs text-primary rounded-full border border-slate-200/80 px-3 py-1 bg-white/65">
-                        gateway-only
+                        {activeDetail.snapshotBadge}
                       </span>
                     </div>
                     <pre className="overflow-x-auto rounded-2xl bg-slate-950 border border-slate-800 text-slate-100 p-4 text-xs leading-relaxed font-mono shadow-2xl">
-                      <code>{mcpMermaidDiagram}</code>
+                      <code>{activeDetail.diagram}</code>
                     </pre>
                   </div>
                 </div>
