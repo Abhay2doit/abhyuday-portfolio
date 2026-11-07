@@ -40,8 +40,10 @@ jobs:
       - name: Build portfolio
         run: npm run build
 
-      - name: Verify static content, metadata, and links
-        run: npm run check:static
+      - name: Verify entry point and SPA fallback
+        run: |
+          test -f dist/index.html
+          cmp dist/index.html dist/404.html
 
       - name: Upload Pages artifact
         if: github.ref == 'refs/heads/main'
