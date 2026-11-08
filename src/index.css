@@ -237,3 +237,42 @@
 [data-reveal-pending]:focus-within { opacity: 1; transform: none; }
 .contact-section { position: relative; isolation: isolate; overflow: hidden; }
 .contact-art { position: absolute; z-index: -1; width: 420px; height: 420px; right: -80px; bottom: -150px; object-fit: contain; opacity: .045; pointer-events: none; }
+
+/* Show engineering judgment before the optional tool inventory. */
+.approach-intro { display: grid; grid-template-columns: 1.1fr 1fr; align-items: end; gap: 4rem; }
+.approach-intro .section-title { max-width: 34rem; font-size: clamp(2.5rem, 4.7vw, 4rem); }
+.approach-statement { max-width: 35rem; color: hsl(var(--muted-foreground)); font-size: 1.0625rem; line-height: 1.85; }
+.approach-statement a { color: hsl(var(--foreground)); text-decoration: underline; text-decoration-color: #bdcaff; text-underline-offset: 4px; }
+.approach-statement a:hover { color: hsl(var(--primary)); }
+.approach-flow { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 3.5rem; border-top: 1px solid hsl(var(--border)); }
+.approach-flow li { min-width: 0; padding: 1.6rem 2rem 1.8rem; border-right: 1px solid hsl(var(--border)); }
+.approach-flow li:first-child { padding-left: 0; }
+.approach-flow li:last-child { padding-right: 0; border-right: 0; }
+.approach-step { display: flex; align-items: center; gap: .7rem; font-size: .75rem; color: hsl(var(--muted-foreground)); }
+.approach-step svg { margin-left: auto; color: #9ba9d1; }
+.approach-flow h3 { max-width: 18rem; margin-top: 1.5rem; font-size: 1.4rem; line-height: 1.35; font-weight: 600; letter-spacing: -.025em; }
+.approach-flow p { margin-top: 1rem; color: hsl(var(--muted-foreground)); font-size: .9375rem; line-height: 1.8; }
+.approach-note { display: block; margin-top: 1.5rem; color: hsl(var(--primary)); font-size: .6875rem; line-height: 1.6; }
+.approach-footer { display: flex; justify-content: space-between; align-items: center; gap: 1.5rem; border-block: 1px solid hsl(var(--border)); padding-block: 1.4rem; }
+.approach-footer > p { font-size: 1rem; font-weight: 500; letter-spacing: -.015em; }
+.approach-footer .text-link { font-size: .8125rem; }
+.technical-toolkit { margin-top: 1.5rem; color: hsl(var(--muted-foreground)); }
+.technical-toolkit summary { display: flex; align-items: center; gap: .6rem; width: fit-content; padding-block: .5rem; cursor: pointer; font-size: .8125rem; list-style: none; }
+.technical-toolkit summary::-webkit-details-marker { display: none; }
+.technical-toolkit summary:hover { color: hsl(var(--primary)); }
+.technical-toolkit[open] summary svg { transform: rotate(45deg); }
+.technical-toolkit dl { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.3rem 3rem; margin-top: 1rem; max-width: 65rem; }
+.technical-toolkit dt { color: hsl(var(--foreground)); font-size: .8125rem; font-weight: 600; }
+.technical-toolkit dd { margin-top: .3rem; font-size: .8125rem; line-height: 1.8; }
+@media (max-width: 767px) {
+  .approach-intro { grid-template-columns: 1fr; gap: 1.5rem; }
+  .approach-statement { font-size: 1rem; }
+  .approach-flow { grid-template-columns: 1fr; margin-top: 2rem; }
+  .approach-flow li, .approach-flow li:first-child, .approach-flow li:last-child { padding: 1.5rem 0; border-right: 0; border-bottom: 1px solid hsl(var(--border)); }
+  .approach-flow li:last-child { border-bottom: 0; }
+  .approach-step svg { transform: rotate(90deg); }
+  .approach-flow h3 { max-width: none; margin-top: .9rem; font-size: 1.35rem; }
+  .approach-note { margin-top: 1rem; }
+  .approach-footer { align-items: flex-start; flex-direction: column; gap: 1rem; }
+  .technical-toolkit dl { grid-template-columns: 1fr; }
+}

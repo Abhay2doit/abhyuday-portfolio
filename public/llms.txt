@@ -3,7 +3,7 @@
 > Solutions Architect and forward-deployed engineer based in Bengaluru, India. Applied AI, enterprise integrations, and customer delivery.
 
 ## Profile and experience
-- [Portfolio](https://abhay2doit.github.io/abhyuday-portfolio/): Introduction, employment history, skills, and contact links.
+- [Portfolio](https://abhay2doit.github.io/abhyuday-portfolio/): Introduction, selected work, employment history, systems thinking, technical toolkit, and contact links.
 - [LinkedIn](https://www.linkedin.com/in/abhyuday-bhadauriya-softwareengineer/)
 - [GitHub](https://github.com/Abhay2doit)
 

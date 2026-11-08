@@ -6,7 +6,7 @@ import { sitePath } from "@/data/profile";
 const navLinks = [
   { href: "/#projects", label: "Work" },
   { href: "/#experience", label: "Experience" },
-  { href: "/#skills", label: "Skills" },
+  { href: "/#skills", label: "Approach" },
   { href: "/ai-corner/", label: "AI Corner" },
   { href: "/#contact", label: "Contact" },
 ];
