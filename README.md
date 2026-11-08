@@ -54,7 +54,8 @@ no unsupported metrics or customer claims should be added.
 The review branch uses a pure white background and blue emphasis for Applied AI.
 The original abstract artwork is in `public/abstract-connections.png`; its
 generation prompt is saved in `assets/abstract-connections.prompt.txt`.
-The hero has a pause control, and all motion respects reduced-motion preferences.
+The hero artwork starts automatically once loaded and in view, plays two 2.2-second
+loops, and settles without playback controls. All motion respects reduced-motion preferences.
 Offscreen content reveals progressively with IntersectionObserver; the initial
 server-rendered content stays visible without JavaScript.
 

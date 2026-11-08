@@ -1,9 +1,37 @@
-import { useState } from "react";
-import { ArrowDownRight, ArrowUpRight, Download, Pause, Play } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { ArrowDownRight, ArrowUpRight, Download } from "lucide-react";
 import { sitePath } from "@/data/profile";
 
 const HeroSection = () => {
-  const [motionPaused, setMotionPaused] = useState(false);
+  const artworkRef = useRef<HTMLDivElement>(null);
+  const [artworkReady, setArtworkReady] = useState(false);
+
+  useEffect(() => {
+    const scene = artworkRef.current;
+    const image = scene?.querySelector("img");
+    if (!scene || !image) return;
+
+    let inView = !("IntersectionObserver" in window);
+    let observer: IntersectionObserver | undefined;
+    const startWhenReady = () => {
+      if (!inView || !image.complete || !image.naturalWidth) return;
+      setArtworkReady(true);
+      observer?.disconnect();
+    };
+    if ("IntersectionObserver" in window) {
+      observer = new IntersectionObserver(([entry]) => {
+        inView = entry.isIntersecting;
+        startWhenReady();
+      }, { threshold: 0.25 });
+      observer.observe(scene);
+    }
+    image.addEventListener("load", startWhenReady);
+    startWhenReady();
+    return () => {
+      image.removeEventListener("load", startWhenReady);
+      observer?.disconnect();
+    };
+  }, []);
   return (
   <section className="hero-section" aria-labelledby="intro-title">
     <div className="container mx-auto px-4 md:px-8">
@@ -23,13 +51,12 @@ const HeroSection = () => {
         </div>
         <div className="hero-aside hero-enter hero-enter-3">
           <div className="artwork-stage">
-          <div className={`abstract-scene${motionPaused ? " is-paused" : ""}`} aria-hidden="true">
+          <div ref={artworkRef} className={`abstract-scene${artworkReady ? " is-playing" : ""}`} aria-hidden="true">
             <div className="abstract-orbit"><span /></div>
             <img className="abstract-sculpture" src={sitePath("/abstract-connections.png")} width="1024" height="1024" alt="" loading="eager" decoding="async" />
             <span className="scene-mark scene-mark-one">+</span>
             <span className="scene-mark scene-mark-two">+</span>
           </div>
-          <button className="motion-toggle" type="button" onClick={() => setMotionPaused((paused) => !paused)} aria-pressed={motionPaused} aria-label={motionPaused ? "Resume artwork animation" : "Pause artwork animation"}>{motionPaused ? <Play aria-hidden="true" size={12} /> : <Pause aria-hidden="true" size={12} />}<span>{motionPaused ? "Resume motion" : "Pause motion"}</span></button>
           </div>
           <div className="current-work">
             <p className="eyebrow">Currently at Enterpret</p>

@@ -167,9 +167,12 @@
 .hero-aside { min-width: 0; }
 .abstract-scene { position: relative; display: grid; place-items: center; height: clamp(280px, 28vw, 410px); isolation: isolate; }
 .abstract-scene::before { content: ""; position: absolute; z-index: -1; inset: 12% -5% 5%; background: radial-gradient(ellipse, #f0f4ff 0%, #fff 68%); }
-.abstract-sculpture { position: absolute; inset: 0; margin: auto; width: 100%; max-width: 570px; height: calc(100% - 2rem); object-fit: contain; animation: sculpture-drift 12s ease-in-out infinite; will-change: transform; }
+.abstract-sculpture { position: absolute; inset: 0; margin: auto; width: 100%; max-width: 570px; height: calc(100% - 2rem); object-fit: contain; }
+.abstract-scene.is-playing .abstract-sculpture { animation: sculpture-drift 2.2s ease-in-out 2; }
 .abstract-orbit { position: absolute; z-index: -1; width: 105%; height: 44%; border: 1px solid #e1e7f7; border-radius: 50%; transform: rotate(-27deg); }
-.abstract-orbit span { position: absolute; width: 7px; height: 7px; top: 15%; left: 12%; border-radius: 50%; background: #a1b6fa; animation: orbit-breathe 5s ease-in-out infinite; }
+.abstract-orbit span { position: absolute; width: 7px; height: 7px; top: 15%; left: 12%; border-radius: 50%; background: #a1b6fa; }
+.abstract-scene.is-playing .abstract-orbit { animation: orbit-sway 2.2s ease-in-out 2; }
+.abstract-scene.is-playing .abstract-orbit span { animation: orbit-breathe 2.2s ease-in-out 2; }
 .scene-mark { position: absolute; color: #bdc7de; font-family: monospace; font-size: 20px; font-weight: 400; }
 .scene-mark-one { top: 12%; right: 7%; }
 .scene-mark-two { bottom: 8%; left: 7%; }
@@ -179,7 +182,7 @@
 .hero-bottom { display: flex; align-items: center; justify-content: space-between; gap: 2rem; border-top: 1px solid hsl(var(--border)); padding-block: 1.3rem; color: #717784; font-size: 0.75rem; }
 .hero-bottom > span > span { padding-inline: 0.7rem; color: #c2c8d6; }
 .hero-bottom a { display: inline-flex; align-items: center; gap: 1rem; }
-.hero-bottom a svg { animation: scroll-hint 3s 1s ease-in-out 3; }
+.hero-bottom a svg { animation: scroll-hint 2.2s ease-in-out 2; }
 .hero-enter { animation: hero-enter 800ms cubic-bezier(.22,1,.36,1) both; }
 .hero-enter-1 { animation-delay: 0ms; }
 .hero-enter-2 { animation-delay: 100ms; }
@@ -195,8 +198,9 @@
 .nav-link:hover::after, .nav-link:focus-visible::after { transform: scaleX(1); }
 @keyframes hero-enter { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes draw-focus { to { stroke-dashoffset: 0; } }
-@keyframes sculpture-drift { 0%, 100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-13px) rotate(1deg); } }
-@keyframes orbit-breathe { 0%, 100% { opacity: .45; transform: scale(.8); } 50% { opacity: 1; transform: scale(1.2); } }
+@keyframes sculpture-drift { 0%, 100% { transform: translate(0, 0) rotate(0) scale(1); } 25% { transform: translate(3px, -10px) rotate(7deg) scale(1.025); } 75% { transform: translate(-3px, -6px) rotate(-6deg) scale(1.01); } }
+@keyframes orbit-sway { 0%, 100% { transform: rotate(-27deg); } 25% { transform: rotate(-19deg); } 75% { transform: rotate(-35deg); } }
+@keyframes orbit-breathe { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: .4; transform: scale(1.5); } }
 @keyframes scroll-hint { 0%, 70%, 100% { transform: translateY(0); } 80% { transform: translateY(4px); } }
 @media (max-width: 1023px) and (min-width: 641px) {
   .hero-grid { gap: 2rem; padding-block: 4rem; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); }
@@ -223,18 +227,13 @@
   .project-row::before { left: -.5rem; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .hero-enter, .abstract-sculpture, .abstract-orbit span, .hero-bottom a svg { animation: none; }
+  .hero-enter, .abstract-scene.is-playing .abstract-sculpture, .abstract-scene.is-playing .abstract-orbit, .abstract-scene.is-playing .abstract-orbit span, .hero-bottom a svg { animation: none; }
   .hero-highlight path { animation: none; stroke-dashoffset: 0; }
   [data-reveal-pending] { opacity: 1; transform: none; }
-  .abstract-sculpture { will-change: auto; }
   [data-reveal], .project-row::before, .nav-link::after { transition: none; }
 }
 
 .artwork-stage { position: relative; }
-.motion-toggle { position: absolute; bottom: -0.5rem; right: 0; display: inline-flex; align-items: center; gap: .45rem; padding: .5rem; color: #737b8c; font-size: .625rem; letter-spacing: .01em; }
-.motion-toggle:hover { color: hsl(var(--primary)); }
-.abstract-scene.is-paused .abstract-sculpture, .abstract-scene.is-paused .abstract-orbit span { animation-play-state: paused; }
 [data-reveal-pending]:focus-within { opacity: 1; transform: none; }
 .contact-section { position: relative; isolation: isolate; overflow: hidden; }
 .contact-art { position: absolute; z-index: -1; width: 420px; height: 420px; right: -80px; bottom: -150px; object-fit: contain; opacity: .045; pointer-events: none; }
-@media (prefers-reduced-motion: reduce) { .motion-toggle { display: none; } }
