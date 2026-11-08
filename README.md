@@ -14,6 +14,7 @@ npm run dev
 
 ```sh
 npx tsc --noEmit -p tsconfig.app.json
+npm run test:artwork
 npm run build
 npm run check:static
 npm run preview
@@ -56,8 +57,23 @@ no unsupported metrics or customer claims should be added.
 The review branch uses a pure white background and blue emphasis for Applied AI.
 The original abstract artwork is in `public/abstract-connections.png`; its
 generation prompt is saved in `assets/abstract-connections.prompt.txt`.
-The hero artwork starts automatically once loaded and in view, plays two 2.2-second
-loops, and settles without playback controls. All motion respects reduced-motion preferences.
+The hero's Three.js renderer lives in a separate `ribbon-scene.html` document and
+build entry. It is requested after the page load, at idle, and only when the
+artwork and page are visible. Readiness timeouts pause in a hidden tab.
+Three.js is the only added runtime package; there are no
+model, texture, or HDR downloads. Geometry and studio lighting are procedural.
+The sculpture stays still while a blue material band makes two 2.2-second circuits,
+then rendering stops until a resize. There are no playback controls.
+
+`RibbonArtwork.tsx` always renders the original static image. It reveals the
+embedded canvas only after a successful first frame, validates messages by
+origin and frame identity, and restores the image on renderer failure or timeout.
+Reduced-motion, data-saving, and 2G connections keep the static image without
+requesting the 3D document. The host page has no Three.js import.
+
+The static check verifies separate entry graphs and gzip JavaScript budgets:
+115 KiB for the homepage and 145 KiB for the deferred scene. These are transfer
+budgets, not a guarantee of identical load times on every device.
 Offscreen content reveals progressively with IntersectionObserver; the initial
 server-rendered content stays visible without JavaScript.
 

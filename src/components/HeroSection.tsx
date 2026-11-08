@@ -1,37 +1,8 @@
-import { useEffect, useRef, useState } from "react";
 import { ArrowDownRight, ArrowUpRight, Download } from "lucide-react";
 import { sitePath } from "@/data/profile";
+import RibbonArtwork from "@/components/RibbonArtwork";
 
 const HeroSection = () => {
-  const artworkRef = useRef<HTMLDivElement>(null);
-  const [artworkReady, setArtworkReady] = useState(false);
-
-  useEffect(() => {
-    const scene = artworkRef.current;
-    const image = scene?.querySelector("img");
-    if (!scene || !image) return;
-
-    let inView = !("IntersectionObserver" in window);
-    let observer: IntersectionObserver | undefined;
-    const startWhenReady = () => {
-      if (!inView || !image.complete || !image.naturalWidth) return;
-      setArtworkReady(true);
-      observer?.disconnect();
-    };
-    if ("IntersectionObserver" in window) {
-      observer = new IntersectionObserver(([entry]) => {
-        inView = entry.isIntersecting;
-        startWhenReady();
-      }, { threshold: 0.25 });
-      observer.observe(scene);
-    }
-    image.addEventListener("load", startWhenReady);
-    startWhenReady();
-    return () => {
-      image.removeEventListener("load", startWhenReady);
-      observer?.disconnect();
-    };
-  }, []);
   return (
   <section className="hero-section" aria-labelledby="intro-title">
     <div className="container mx-auto px-4 md:px-8">
@@ -50,14 +21,7 @@ const HeroSection = () => {
           </div>
         </div>
         <div className="hero-aside hero-enter hero-enter-3">
-          <div className="artwork-stage">
-          <div ref={artworkRef} className={`abstract-scene${artworkReady ? " is-playing" : ""}`} aria-hidden="true">
-            <div className="abstract-orbit"><span /></div>
-            <img className="abstract-sculpture" src={sitePath("/abstract-connections.png")} width="1024" height="1024" alt="" loading="eager" decoding="async" />
-            <span className="scene-mark scene-mark-one">+</span>
-            <span className="scene-mark scene-mark-two">+</span>
-          </div>
-          </div>
+          <RibbonArtwork />
           <div className="current-work">
             <p className="eyebrow">Currently at Enterpret</p>
             <p>I work across customer delivery, data integrations, and the engineering practices that help teams deliver consistently.</p>

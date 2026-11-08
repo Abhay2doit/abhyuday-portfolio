@@ -168,11 +168,12 @@
 .abstract-scene { position: relative; display: grid; place-items: center; height: clamp(280px, 28vw, 410px); isolation: isolate; }
 .abstract-scene::before { content: ""; position: absolute; z-index: -1; inset: 12% -5% 5%; background: radial-gradient(ellipse, #f0f4ff 0%, #fff 68%); }
 .abstract-sculpture { position: absolute; inset: 0; margin: auto; width: 100%; max-width: 570px; height: calc(100% - 2rem); object-fit: contain; }
-.abstract-scene.is-playing .abstract-sculpture { animation: sculpture-drift 2.2s ease-in-out 2; }
+.abstract-sculpture { transition: opacity 180ms ease; }
+.ribbon-frame { position: absolute; inset: 0; margin: auto; width: 100%; max-width: 570px; height: calc(100% - 2rem); border: 0; opacity: 0; pointer-events: none; transition: opacity 180ms ease; }
+.abstract-scene[data-renderer-status="ready"] .ribbon-frame { opacity: 1; }
+.abstract-scene[data-renderer-status="ready"] .abstract-sculpture { opacity: 0; }
 .abstract-orbit { position: absolute; z-index: -1; width: 105%; height: 44%; border: 1px solid #e1e7f7; border-radius: 50%; transform: rotate(-27deg); }
 .abstract-orbit span { position: absolute; width: 7px; height: 7px; top: 15%; left: 12%; border-radius: 50%; background: #a1b6fa; }
-.abstract-scene.is-playing .abstract-orbit { animation: orbit-sway 2.2s ease-in-out 2; }
-.abstract-scene.is-playing .abstract-orbit span { animation: orbit-breathe 2.2s ease-in-out 2; }
 .scene-mark { position: absolute; color: #bdc7de; font-family: monospace; font-size: 20px; font-weight: 400; }
 .scene-mark-one { top: 12%; right: 7%; }
 .scene-mark-two { bottom: 8%; left: 7%; }
@@ -198,9 +199,6 @@
 .nav-link:hover::after, .nav-link:focus-visible::after { transform: scaleX(1); }
 @keyframes hero-enter { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes draw-focus { to { stroke-dashoffset: 0; } }
-@keyframes sculpture-drift { 0%, 100% { transform: translate(0, 0) rotate(0) scale(1); } 25% { transform: translate(3px, -10px) rotate(7deg) scale(1.025); } 75% { transform: translate(-3px, -6px) rotate(-6deg) scale(1.01); } }
-@keyframes orbit-sway { 0%, 100% { transform: rotate(-27deg); } 25% { transform: rotate(-19deg); } 75% { transform: rotate(-35deg); } }
-@keyframes orbit-breathe { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: .4; transform: scale(1.5); } }
 @keyframes scroll-hint { 0%, 70%, 100% { transform: translateY(0); } 80% { transform: translateY(4px); } }
 @media (max-width: 1023px) and (min-width: 641px) {
   .hero-grid { gap: 2rem; padding-block: 4rem; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); }
@@ -217,7 +215,7 @@
   .hero-actions .action-link { font-size: .875rem; }
   .hero-actions .text-link { font-size: .875rem; }
   .abstract-scene { height: 285px; margin-top: 0.5rem; }
-  .abstract-sculpture { width: 92%; max-width: 350px; }
+  .abstract-sculpture, .ribbon-frame { width: 92%; max-width: 350px; }
   .abstract-orbit { width: 88%; }
   .current-work { margin: 1.1rem 0 0; max-width: none; }
   .hero-bottom { padding-block: 1.1rem; font-size: .6875rem; }
@@ -227,7 +225,9 @@
   .project-row::before { left: -.5rem; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .hero-enter, .abstract-scene.is-playing .abstract-sculpture, .abstract-scene.is-playing .abstract-orbit, .abstract-scene.is-playing .abstract-orbit span, .hero-bottom a svg { animation: none; }
+  .hero-enter, .hero-bottom a svg { animation: none; }
+  .ribbon-frame { display: none; }
+  .abstract-scene[data-renderer-status="ready"] .abstract-sculpture { opacity: 1; }
   .hero-highlight path { animation: none; stroke-dashoffset: 0; }
   [data-reveal-pending] { opacity: 1; transform: none; }
   [data-reveal], .project-row::before, .nav-link::after { transition: none; }

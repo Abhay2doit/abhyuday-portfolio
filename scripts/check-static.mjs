@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { readFile, stat } from "node:fs/promises";
 import path from "node:path";
+import { gzipSync } from "node:zlib";
 import { pagePaths } from "../dist-ssr/entry-server.js";
 
 const base = "/abhyuday-portfolio";
@@ -36,4 +37,23 @@ const notFound = await readFile("dist/404.html", "utf8");
 assert(notFound.includes('name="robots" content="noindex"'));
 assert(!notFound.includes('id="experience"'));
 assert((await stat("dist/social-card.png")).size > 1000);
+const manifest = JSON.parse(await readFile("dist/.vite/manifest.json", "utf8"));
+const entryFiles = (key, found = new Set()) => {
+  const entry = manifest[key];
+  if (found.has(entry.file)) return found;
+  found.add(entry.file);
+  for (const dependency of entry.imports ?? []) entryFiles(dependency, found);
+  return found;
+};
+const mainFiles = entryFiles("index.html");
+const sceneFiles = entryFiles("ribbon-scene.html");
+assert(!mainFiles.has(manifest["ribbon-scene.html"].file), "3D scene must remain a separate entry");
+assert(!home.includes("<iframe"), "Initial HTML must use the static artwork without loading an iframe");
+assert(home.includes('data-renderer-status="poster"'), "Missing static artwork fallback");
+assert((await readFile("dist/ribbon-scene.html", "utf8")).includes('name="robots" content="noindex, nofollow"'));
+const gzipBytes = async (files) => (await Promise.all([...files].map(async (file) => gzipSync(await readFile(path.join("dist", file))).length))).reduce((sum, size) => sum + size, 0);
+const mainBytes = await gzipBytes(mainFiles), sceneBytes = await gzipBytes(sceneFiles);
+assert(mainBytes < 115 * 1024, "Homepage entry grew beyond its initial-JavaScript budget");
+assert(sceneBytes < 145 * 1024, "Deferred artwork grew beyond its JavaScript budget");
+console.log(`JavaScript gzip: homepage ${(mainBytes / 1024).toFixed(1)} KiB; deferred artwork ${(sceneBytes / 1024).toFixed(1)} KiB.`);
 console.log(`Validated ${pagePaths.length} static pages: profile text, links, canonical URLs, JSON-LD, sitemap, and 404 handling.`);

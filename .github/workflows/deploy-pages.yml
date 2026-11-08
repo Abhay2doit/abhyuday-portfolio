@@ -40,6 +40,9 @@ jobs:
       - name: Build portfolio
         run: npm run build
 
+      - name: Verify ribbon motion and WebGL failure handling
+        run: npm run test:artwork
+
       - name: Verify static content, metadata, and links
         run: npm run check:static
 
