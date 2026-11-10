@@ -1,98 +1,57 @@
-import { Code, Cpu, Layers, Users } from "lucide-react";
-import SkillIconMarquee from "./SkillIconMarquee";
+import { ArrowUpRight } from "lucide-react";
+import { sitePath } from "@/data/profile";
 
-const skillCategories = [
+const practices = [
   {
-    title: "Technical Expertise",
-    icon: Code,
-    color: "text-primary",
-    bgColor: "bg-primary/10",
-    skills: [
-      "Python", "JavaScript", "React", "APIs",
-      "Snowflake", "SQL/NoSQL", "AWS", "GCP", "Mongo DB",
-      "Docker", "Agentic AI", "API"
-    ],
+    step: "01",
+    label: "Agent loops",
+    title: "Make the workflow repeatable.",
+    description: "I’ve built agent loops to replace workflows I used to run manually. I can rerun the process, inspect the result, and improve the next iteration.",
   },
   {
-    title: "AI & Automation",
-    icon: Cpu,
-    color: "text-secondary",
-    bgColor: "bg-secondary/10",
-    skills: [
-      "Agentic Workflows", "Multi-Agent Systems",
-      "Mixture of Experts (MoE)", "AI/ML Integration",
-      "Prompt Engineering", "n8n", "Zapier"
-    ],
+    step: "02",
+    label: "Reusable skills",
+    title: "Keep the instructions that work.",
+    description: "I turn repetitive tasks into reusable skills, so I can carry a working approach into the next task instead of starting over.",
   },
   {
-    title: "Solution Design",
-    icon: Layers,
-    color: "text-accent",
-    bgColor: "bg-accent/10",
-    skills: [
-      "Solution Architecture", "Enterprise Integrations",
-      "System Design", "ETL/ELT Workflows",
-      "Data Pipelines", "Pre-Sales Demos"
-    ],
-  },
-  {
-    title: "Technical Leadership & Delivery",
-    icon: Users,
-    color: "text-primary",
-    bgColor: "bg-primary/10",
-    skills: [
-      "Team Building", "Delivery Planning",
-      "Implementation Standards", "Technical Documentation",
-      "Escalation Processes", "Cross-Functional Collaboration"
-    ],
+    step: "03",
+    label: "Connectors",
+    title: "Bring the work together.",
+    description: "I use multiple connectors to bring the tools and information I need into the same workflow.",
   },
 ];
 
-const SkillsSection = () => {
-  return (
-    <section id="skills" className="py-20 md:py-32 relative">
-      <div className="absolute inset-0 paper-texture pointer-events-none" />
-
-      <div className="container mx-auto px-4 md:px-8">
-        <div className="flex items-center gap-4 mb-8">
-          <Code className="w-8 h-8 text-primary" />
-          <h2 className="text-4xl md:text-6xl font-display font-extrabold tracking-[-0.04em]">
-            Skills.
-          </h2>
+const SkillsSection = () => (
+  <section id="skills" className="section-space anchor-section approach-section border-t border-border" aria-labelledby="skills-title">
+    <div className="container mx-auto px-4 md:px-8">
+      <div data-reveal className="approach-intro">
+        <div>
+          <p className="eyebrow mb-4">How I work</p>
+          <h2 id="skills-title" className="section-title">I figure <span className="block text-primary">things out.</span></h2>
         </div>
-
-        {/* Skill Icons Marquee */}
-        <SkillIconMarquee />
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-          {skillCategories.map((category, index) => (
-            <div
-              key={index}
-              className="cloud-shell rounded-[1.5rem] p-6 md:p-8 hover:-translate-y-1 transition-transform"
-            >
-              <div className="flex items-center gap-3 mb-6">
-                <div className={`p-3 rounded ${category.bgColor}`}>
-                  <category.icon className={`w-6 h-6 ${category.color}`} />
-                </div>
-                <h3 className="text-xl font-display font-bold">{category.title}</h3>
-              </div>
-
-              <div className="flex flex-wrap gap-2">
-                {category.skills.map((skill, i) => (
-                  <span
-                    key={i}
-                    className="px-3 py-1 rounded-full bg-white/70 text-sm font-mono border border-slate-200/80 hover:bg-primary hover:text-primary-foreground transition-colors cursor-default"
-                  >
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </div>
-          ))}
+        <div className="approach-statement">
+          <p>I’m a hands-on full-stack engineer. I’ve worked across domains with Python, React, SQL, and AWS infrastructure. That breadth helps me find my way through unfamiliar systems.</p>
+          <p>Today, I use Claude within an agent harness as part of my daily engineering workflow. I build repeatable loops, create skills for recurring tasks, and connect the tools the work depends on.</p>
         </div>
       </div>
-    </section>
-  );
-};
+
+      <ul className="approach-flow">
+        {practices.map((item) => (
+          <li data-reveal key={item.label}>
+            <div className="approach-step"><span className="project-number">{item.step}</span><span>{item.label}</span></div>
+            <h3>{item.title}</h3>
+            <p>{item.description}</p>
+          </li>
+        ))}
+      </ul>
+
+      <div className="approach-footer">
+        <p>Understand the problem. Choose an approach. Check the result.</p>
+        <a className="text-link" href={sitePath("/ai-corner/workflows/")}>Explore my workflow notes <ArrowUpRight aria-hidden="true" size={16} /></a>
+      </div>
+    </div>
+  </section>
+);
 
 export default SkillsSection;
