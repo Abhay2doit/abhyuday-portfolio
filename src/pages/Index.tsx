@@ -1,6 +1,7 @@
 import { useReveal } from "@/hooks/use-reveal";
 import Navigation from "@/components/Navigation";
 import HeroSection from "@/components/HeroSection";
+import CustomerFirstSection from "@/components/CustomerFirstSection";
 import ExperienceSection from "@/components/ExperienceSection";
 import SkillsSection from "@/components/SkillsSection";
 import ProjectsSection from "@/components/ProjectsSection";
@@ -13,6 +14,7 @@ const Index = () => {
       <Navigation />
       <main id="main-content">
         <HeroSection />
+        <CustomerFirstSection />
         <ExperienceSection />
         <SkillsSection />
         <ProjectsSection />
