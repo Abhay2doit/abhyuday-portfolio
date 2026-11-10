@@ -238,6 +238,20 @@
 .contact-section { position: relative; isolation: isolate; overflow: hidden; }
 .contact-art { position: absolute; z-index: -1; width: 420px; height: 420px; right: -80px; bottom: -150px; object-fit: contain; opacity: .045; pointer-events: none; }
 
+.customer-first-section { padding-block: 3.5rem; }
+.customer-first-section h2 { max-width: 26rem; font-size: clamp(1.75rem, 2.7vw, 2.5rem); font-weight: 600; line-height: 1.15; letter-spacing: -.035em; }
+.customer-first-copy { max-width: 32rem; margin-top: 1rem; color: hsl(var(--muted-foreground)); font-size: .9375rem; line-height: 1.8; }
+.customer-first-quote { align-self: center; margin: 0; padding-left: 1.75rem; border-left: 2px solid hsl(var(--primary)); }
+.customer-first-quote blockquote { max-width: 37rem; font-size: clamp(1.4rem, 2.3vw, 2rem); font-weight: 500; line-height: 1.5; letter-spacing: -.025em; }
+.customer-first-quote figcaption { display: flex; align-items: center; flex-wrap: wrap; gap: .6rem 1rem; margin-top: 1.25rem; color: hsl(var(--muted-foreground)); font-size: .8125rem; }
+.customer-first-quote figcaption > span { color: hsl(var(--foreground)); font-weight: 600; }
+.customer-first-quote a { display: inline-flex; align-items: center; gap: .3rem; color: hsl(var(--primary)); }
+.customer-first-quote a:hover { text-decoration: underline; text-underline-offset: 4px; }
+@media (max-width: 767px) {
+  .customer-first-section { padding-block: 2.5rem; }
+  .customer-first-quote { padding-left: 1.1rem; }
+}
+
 /* Engineering breadth and the agent workflows used in everyday work. */
 .approach-intro { display: grid; grid-template-columns: 1.1fr 1fr; align-items: end; gap: 4rem; }
 .approach-intro .section-title { max-width: 34rem; font-size: clamp(2.5rem, 4.7vw, 4rem); }
