@@ -4,9 +4,9 @@ import { useLocation } from "react-router-dom";
 import { sitePath } from "@/data/profile";
 
 const navLinks = [
-  { href: "/#projects", label: "Work" },
   { href: "/#experience", label: "Experience" },
   { href: "/#skills", label: "Approach" },
+  { href: "/#projects", label: "Work" },
   { href: "/ai-corner/", label: "AI Corner" },
   { href: "/#contact", label: "Contact" },
 ];
