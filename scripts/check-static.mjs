@@ -31,7 +31,7 @@ for (const route of pagePaths) {
   }
 }
 const home = await readFile("dist/index.html", "utf8");
-for (const text of ["Enterpret", "Observe.AI", "Experience", "Snowflake", "Aug 2019", "Jul 2019", "Sep 2017", "github.com/Abhay2doit"]) assert(home.includes(text), `Missing public profile content: ${text}`);
+for (const text of ["Enterpret", "Observe.AI", "Experience", "Claude", "Aug 2019", "Jul 2019", "Sep 2017", "github.com/Abhay2doit"]) assert(home.includes(text), `Missing public profile content: ${text}`);
 assert(!home.includes("data-reveal-pending"), "Static content must be visible before JavaScript runs");
 const notFound = await readFile("dist/404.html", "utf8");
 assert(notFound.includes('name="robots" content="noindex"'));

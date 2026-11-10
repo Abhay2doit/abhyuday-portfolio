@@ -43,8 +43,8 @@ before publishing changes to `main`.
 - `src/data/projects.ts`: shared case-study summaries and detail content.
 - `src/components/ExperienceSection.tsx`: work history. Dates follow LinkedIn;
   the February–April 2024 Observe.AI role overlap is intentional.
-- `src/components/SkillsSection.tsx`: systems approach (context, action, evidence),
-  with the factual technical toolkit available in a native disclosure.
+- `src/components/SkillsSection.tsx`: engineering background and daily work with
+  Claude, agent loops, reusable skills, and connectors, based on the owner's account.
 - `src/lib/seo.ts`: page metadata, published paths, and structured data.
 - `public/social-card.png`: original portfolio social preview. Its optional
   macOS drawing helper is `scripts/create-social-image.swift`.

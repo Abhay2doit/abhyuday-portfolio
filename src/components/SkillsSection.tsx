@@ -1,34 +1,24 @@
-import { ArrowRight, ArrowUpRight, Plus } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { sitePath } from "@/data/profile";
 
-const toolkit = [
-  { name: "Engineering", items: "Python, JavaScript, React, APIs, SQL, Snowflake, Docker" },
-  { name: "Integrations & data", items: "Enterprise integrations, webhooks, SFTP, ETL/ELT, data pipelines" },
-  { name: "Applied AI & automation", items: "Agentic workflows, RAG, prompt engineering, n8n" },
-  { name: "Solution delivery", items: "Solution architecture, discovery, delivery planning, technical documentation" },
-];
-
-const questions = [
+const practices = [
   {
     step: "01",
-    label: "Context",
-    question: "What does it need to know?",
-    description: "Find the source, check how current it is, and bring the relevant context into the workflow. Decide what to retrieve and what to leave out.",
-    note: "Sources, retrieval, context",
+    label: "Agent loops",
+    title: "Make the workflow repeatable.",
+    description: "I’ve built agent loops to replace workflows I used to run manually. I can rerun the process, inspect the result, and improve the next iteration.",
   },
   {
     step: "02",
-    label: "Action",
-    question: "What is it allowed to change?",
-    description: "Define the inputs, permissions, and point for human review. Give each action a clear contract, whether it runs through an API, MCP, or a workflow.",
-    note: "Tool contracts, access, approvals",
+    label: "Reusable skills",
+    title: "Keep the instructions that work.",
+    description: "I turn repetitive tasks into reusable skills, so I can carry a working approach into the next task instead of starting over.",
   },
   {
     step: "03",
-    label: "Evidence",
-    question: "How will we know it worked?",
-    description: "Check the result against the original intent. Make partial failures visible, keep retries safe, and leave a trace the next engineer can follow.",
-    note: "Validation, recovery, handoff",
+    label: "Connectors",
+    title: "Bring the work together.",
+    description: "I use multiple connectors to bring the tools and information I need into the same workflow.",
   },
 ];
 
@@ -37,41 +27,29 @@ const SkillsSection = () => (
     <div className="container mx-auto px-4 md:px-8">
       <div data-reveal className="approach-intro">
         <div>
-          <p className="eyebrow mb-4">How I think</p>
-          <h2 id="skills-title" className="section-title">Beyond the <span className="block text-primary">tool call.</span></h2>
+          <p className="eyebrow mb-4">How I work</p>
+          <h2 id="skills-title" className="section-title">I figure <span className="block text-primary">things out.</span></h2>
         </div>
-        <p className="approach-statement">
-          <a href="https://modelcontextprotocol.io/docs/learn/architecture" target="_blank" rel="noopener noreferrer">MCP</a> gives an AI application a way to connect with tools and context. I think about the whole path: what the system knows, what it can change, and what counts as a successful result.
-        </p>
+        <div className="approach-statement">
+          <p>I’m a hands-on full-stack engineer. I’ve worked across domains with Python, React, SQL, and AWS infrastructure. That breadth helps me find my way through unfamiliar systems.</p>
+          <p>Today, I use Claude within an agent harness as part of my daily engineering workflow. I build repeatable loops, create skills for recurring tasks, and connect the tools the work depends on.</p>
+        </div>
       </div>
 
-      <ol className="approach-flow">
-        {questions.map((item, index) => (
+      <ul className="approach-flow">
+        {practices.map((item) => (
           <li data-reveal key={item.label}>
-            <div className="approach-step"><span className="project-number">{item.step}</span><span>{item.label}</span>{index < questions.length - 1 && <ArrowRight aria-hidden="true" size={18} />}</div>
-            <h3>{item.question}</h3>
+            <div className="approach-step"><span className="project-number">{item.step}</span><span>{item.label}</span></div>
+            <h3>{item.title}</h3>
             <p>{item.description}</p>
-            <span className="approach-note">{item.note}</span>
           </li>
         ))}
-      </ol>
+      </ul>
 
       <div className="approach-footer">
-        <p>Choose the tools once the system makes sense.</p>
+        <p>Understand the problem. Choose an approach. Check the result.</p>
         <a className="text-link" href={sitePath("/ai-corner/workflows/")}>Explore my workflow notes <ArrowUpRight aria-hidden="true" size={16} /></a>
       </div>
-
-      <details className="technical-toolkit">
-        <summary>Technical toolkit <Plus aria-hidden="true" size={16} /></summary>
-        <dl>
-          {toolkit.map((group) => (
-            <div key={group.name}>
-              <dt>{group.name}</dt>
-              <dd>{group.items}</dd>
-            </div>
-          ))}
-        </dl>
-      </details>
     </div>
   </section>
 );
